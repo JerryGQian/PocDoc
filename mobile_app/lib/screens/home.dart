@@ -15,16 +15,12 @@ class HomeScreen extends StatelessWidget {
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(items: [
         BottomNavigationBarItem(
-          icon: Icon(CupertinoIcons.home),
-          title: Text('Home'),
-        ),
-        BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.book),
-          title: Text('Favorites'),
+          title: Text('Prescriptions'),
         ),
         BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.pencil),
-          title: Text('Prescriptions'),
+          title: Text('Favorites'),
         ),
         BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.conversation_bubble),
@@ -41,8 +37,6 @@ class HomeScreen extends StatelessWidget {
         } else if (index == 1) {
           return FavoritesScreen();
         } else if (index == 2) {
-          return PrescriptionsScreen();
-        } else if (index == 3) {
           return ChatScreen();
         } else {
           return SettingsScreen();

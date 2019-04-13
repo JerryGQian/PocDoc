@@ -5,6 +5,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'dart:convert' as convert;
+import 'package:http/http.dart' as http;
 import 'package:veggieseasons/widgets/chat_message.dart';
 
 
@@ -18,15 +20,13 @@ class _ChatScreenState extends State<ChatScreen> {
   TextEditingController _textController = new TextEditingController();
 
 
-  @override
+  /*@override
   void initState() {
     super.initState();
     _textController = TextEditingController(text: 'initial text');
-  }
+  }*/
 
   void _handleSubmitted(String text) {
-    print("Yo man 1 ");
-    print(_messages.length);
     _textController.clear();
     if (text.length > 0) {
       ChatMessage message = ChatMessage(
@@ -39,8 +39,6 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Widget _buildTextComposer() {
-    print("Yo man 2");
-    print(_messages.length);
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Row(
@@ -64,8 +62,9 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Widget build(BuildContext context) {
-    print("Yo man build");
-    print(_messages.length);
+    for (int i = 0; i < _messages.length; i++) {
+      print(_messages[i].text);
+    }
     return CupertinoPageScaffold(
       child: Column(
         children: <Widget>[

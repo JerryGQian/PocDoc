@@ -18,6 +18,8 @@ class Preferences extends Model {
   // Indicates whether a call to [_loadFromSharedPrefs] is in progress;
   Future<void> _loading;
 
+  String _email = "user@umd.edu";
+  String _address = "1234 Elm Street, College Park, MD 20871";
   int _desiredCalories = 2000;
 
   Set<MedicationCategory> _preferredCategories = Set<MedicationCategory>();
@@ -25,6 +27,15 @@ class Preferences extends Model {
   Future<int> get desiredCalories async {
     await _loading;
     return _desiredCalories;
+  }
+
+  Future<String> get email async {
+    await _loading;
+    return _email;
+  }
+  Future<String> get address async {
+    await _loading;
+    return _address;
   }
 
   Future<Set<MedicationCategory>> get preferredCategories async {
@@ -40,6 +51,18 @@ class Preferences extends Model {
 
   void removePreferredCategory(MedicationCategory category) async {
     _preferredCategories.remove(category);
+    await _saveToSharedPrefs();
+    notifyListeners();
+  }
+
+  void setEmail(String addr) async {
+    _email = addr;
+    await _saveToSharedPrefs();
+    notifyListeners();
+  }
+
+  void setAddress(String addr) async {
+    _address = addr;
     await _saveToSharedPrefs();
     notifyListeners();
   }

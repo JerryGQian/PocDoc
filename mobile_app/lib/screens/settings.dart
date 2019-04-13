@@ -72,6 +72,48 @@ class VeggieCategorySettingsScreen extends StatelessWidget {
   }
 }
 
+class ContactSettingsScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final model = ScopedModel.of<Preferences>(context, rebuildOnChange: true);
+
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        previousPageTitle: 'Settings',
+      ),
+      backgroundColor: Styles.scaffoldBackground,
+      child: ListView(
+        children: [
+          FutureBuilder<int>(
+            future: model.desiredCalories,
+            builder: (context, snapshot) {
+              final steps = <SettingsItem>[
+                SettingsItem(
+                  label: "Email",
+                  onPress: snapshot.hasData
+                      ? () => model.setEmail("john.doe@umd.edu")
+                      : null,
+                ),
+                SettingsItem(
+                  label: "Address",
+                  onPress: snapshot.hasData
+                      ? () => model.setAddress("21345 Xfinity Center, College Park, MD")
+                      : null,
+                ),
+              ];
+
+
+              return SettingsGroup(
+                items: steps,
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class CalorieSettingsScreen extends StatelessWidget {
   static const max = 1000;
   static const min = 2600;
@@ -126,6 +168,36 @@ class CalorieSettingsScreen extends StatelessWidget {
 }
 
 class SettingsScreen extends StatelessWidget {
+  Widget _buildContactItem(BuildContext context, Preferences prefs) {
+    return SettingsItem(
+      label: 'Contact Information',
+      icon: SettingsIcon(
+        backgroundColor: Styles.iconBlue,
+        icon: Styles.calorieIcon,
+      ),
+      content: FutureBuilder<String>(
+        future: prefs.email,
+        builder: (context, snapshot) {
+          return Row(
+            children: [
+              Text(snapshot.data?.toString() ?? ''),
+              SizedBox(width: 8.0),
+              SettingsNavigationIndicator(),
+            ],
+          );
+        },
+      ),
+      onPress: () {
+        Navigator.of(context).push(
+          CupertinoPageRoute(
+            builder: (context) => ContactSettingsScreen(),
+            title: 'Contact Information',
+          ),
+        );
+      },
+    );
+  }
+
   Widget _buildCaloriesItem(BuildContext context, Preferences prefs) {
     return SettingsItem(
       label: 'Calorie Target',
@@ -195,6 +267,7 @@ class SettingsScreen extends StatelessWidget {
                   <Widget>[
                     SettingsGroup(
                       items: [
+                        _buildContactItem(context, prefs),
                         _buildCaloriesItem(context, prefs),
                         _buildCategoriesItem(context, prefs),
                       ],
