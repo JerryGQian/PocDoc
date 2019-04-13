@@ -9,6 +9,27 @@ body {
     padding: 0;
 }
 
+.container2 {
+    width: 81%;
+    float: right;
+    height: 100vh;
+}
+
+.container-fluid {
+    height: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.row-first {
+    height: 50vh;
+    overflow: hidden;
+}
+
+.row {
+    border: 1px solid #c4c4c4;
+}
+
 img {
     max-width: 100%;
 }
@@ -163,7 +184,8 @@ img {
 
 .mesgs {
     float: left;
-    width: 80%;
+    width: 98%;
+    padding: 0 0 25px 0;
 }
 
 .sent_msg p {
@@ -225,7 +247,6 @@ img {
 }
 
 .msg_history {
-    height: 94vh;
-    padding: 20px 0;
+    height: 50vh;
     overflow-y: auto;
 }
