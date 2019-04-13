@@ -4,7 +4,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pocketmd/screens/favorites.dart';
+import 'package:pocketmd/screens/tasks.dart';
 import 'package:pocketmd/screens/prescriptions.dart';
 import 'package:pocketmd/screens/chat.dart';
 import 'package:pocketmd/screens/settings.dart';
@@ -15,12 +15,12 @@ class HomeScreen extends StatelessWidget {
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(items: [
         BottomNavigationBarItem(
-          icon: Icon(CupertinoIcons.book),
+          icon: Icon(CupertinoIcons.pencil),
           title: Text('Prescriptions'),
         ),
         BottomNavigationBarItem(
-          icon: Icon(CupertinoIcons.pencil),
-          title: Text('Favorites'),
+          icon: Icon(CupertinoIcons.book),
+          title: Text('Tasks'),
         ),
         BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.conversation_bubble),
@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
         if (index == 0) {
           return PrescriptionsScreen();
         } else if (index == 1) {
-          return FavoritesScreen();
+          return TasksScreen();
         } else if (index == 2) {
           return ChatScreen();
         } else {

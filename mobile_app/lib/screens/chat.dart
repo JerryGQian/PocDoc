@@ -82,7 +82,7 @@ class _ChatScreenState extends State<ChatScreen> {
       //print(jsonResponse);
       for (Map<String,dynamic> map in jsonResponse) {
         //print(map['open']);
-        tlist.add(Tuple3<bool,String,String>(true, map['open'].toString(), "hi"));
+        tlist.add(Tuple3<bool,String,String>(true, map['volume'].toString(), map['open'].toString()));
       }
     } else {
       print("Request failed with status.");
@@ -101,17 +101,8 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Widget build(BuildContext context) {
-
     final String url = "https://api.iextrading.com/1.0/stock/aapl/chart";
-    //Future<List<Tuple3<bool,String,String>>> tlist = getData(url);
     buildWait(getData(url));
-    print("TWO");
-    //print(tlist);
-
-    print("THREE");
-    for (int i = 0; i < _messages.length; i++) {
-      print(_messages[i].text);
-    }
 
     return CupertinoPageScaffold(
       child: Column(
@@ -135,32 +126,4 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
     );
   }
-
-
-
-  /*@override
-  Widget build(BuildContext context) {
-    final model = ScopedModel.of<AppState>(context, rebuildOnChange: true);
-
-    return CupertinoTabView(
-      builder: (context) {
-        return DecoratedBox(
-          decoration: BoxDecoration(
-            color: Styles.scaffoldBackground,
-          ),
-          child: SafeArea(
-            bottom: false,
-            child: Column(
-              children: [
-                _createSearchBox(),
-                Expanded(
-                  child: _buildSearchResults(model.searchPrescriptions(terms)),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }*/
 }
