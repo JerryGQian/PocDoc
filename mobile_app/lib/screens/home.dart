@@ -4,10 +4,10 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
-import 'package:veggieseasons/screens/favorites.dart';
-import 'package:veggieseasons/screens/prescriptions.dart';
-import 'package:veggieseasons/screens/chat.dart';
-import 'package:veggieseasons/screens/settings.dart';
+import 'package:pocketmd/screens/favorites.dart';
+import 'package:pocketmd/screens/prescriptions.dart';
+import 'package:pocketmd/screens/chat.dart';
+import 'package:pocketmd/screens/settings.dart';
 
 class HomeScreen extends StatelessWidget {
   @override

@@ -5,7 +5,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:veggieseasons/data/medication.dart';
+import 'package:pocketmd/data/medication.dart';
 
 abstract class Styles {
   static const headlineText = TextStyle(

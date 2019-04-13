@@ -3,10 +3,10 @@
 // found in the LICENSE file.
 
 import 'package:scoped_model/scoped_model.dart';
-import 'package:veggieseasons/data/medication.dart';
-import 'package:veggieseasons/data/medication_list.dart';
-import 'package:veggieseasons/data/prescription.dart';
-import 'package:veggieseasons/data/presciption_list.dart';
+import 'package:pocketmd/data/medication.dart';
+import 'package:pocketmd/data/medication_list.dart';
+import 'package:pocketmd/data/prescription.dart';
+import 'package:pocketmd/data/presciption_list.dart';
 
 class AppState extends Model {
   List<Prescription> _prescriptions;

@@ -5,7 +5,7 @@
 import 'dart:async';
 
 import 'package:scoped_model/scoped_model.dart';
-import 'package:veggieseasons/data/medication.dart';
+import 'package:pocketmd/data/medication.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// A model class that mirrors the options in [SettingsScreen] and stores data
@@ -18,6 +18,7 @@ class Preferences extends Model {
   // Indicates whether a call to [_loadFromSharedPrefs] is in progress;
   Future<void> _loading;
 
+  String _name = "John Doe";
   String _email = "user@umd.edu";
   String _address = "1234 Elm Street, College Park, MD 20871";
   int _desiredCalories = 2000;
@@ -29,6 +30,9 @@ class Preferences extends Model {
     return _desiredCalories;
   }
 
+  String get name {
+    return _name;
+  }
   Future<String> get email async {
     await _loading;
     return _email;

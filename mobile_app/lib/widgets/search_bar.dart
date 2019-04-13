@@ -4,7 +4,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
-import 'package:veggieseasons/styles.dart';
+import 'package:pocketmd/styles.dart';
 
 class SearchBar extends StatelessWidget {
   final TextEditingController controller;

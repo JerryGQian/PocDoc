@@ -5,9 +5,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'dart:async';
+import 'package:tuple/tuple.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
-import 'package:veggieseasons/widgets/chat_message.dart';
+import 'package:pocketmd/widgets/chat_message.dart';
+import 'package:pocketmd/data/preferences.dart';
 
 
 class ChatScreen extends StatefulWidget {
@@ -27,11 +31,19 @@ class _ChatScreenState extends State<ChatScreen> {
   }*/
 
   void _handleSubmitted(String text) {
+    final model = ScopedModel.of<Preferences>(context, rebuildOnChange: true);
     _textController.clear();
     if (text.length > 0) {
-      ChatMessage message = ChatMessage(
-        text: text,
-      );
+      ChatMessage message = ChatMessage(true, model.name, text);
+      setState(() {
+        _messages.insert(0, message);
+      });
+    }
+  }
+  void _buildChatText(bool patient, String name, String text) {
+    _textController.clear();
+    if (text.length > 0) {
+      ChatMessage message = ChatMessage(patient, name, text);
       setState(() {
         _messages.insert(0, message);
       });
@@ -61,14 +73,49 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
+
+  Future<List<Tuple3<bool,String,String>>> getData(String url) async {
+    List<Tuple3<bool,String,String>> tlist = [Tuple3<bool,String,String>(false,"Dr. Doe", "Hello there patient!")];
+    var response = await http.get(url);
+    if (response.statusCode == 200) {
+      var jsonResponse = convert.jsonDecode(response.body);
+      //print(jsonResponse);
+      for (Map<String,dynamic> map in jsonResponse) {
+        //print(map['open']);
+        tlist.add(Tuple3<bool,String,String>(true, map['open'].toString(), "hi"));
+      }
+    } else {
+      print("Request failed with status.");
+    }
+    return tlist;
+  }
+
+
+  Future<void> buildWait(Future<List<Tuple3<bool,String,String>>> ftlist) async {
+    List<Tuple3<bool,String,String>> tlist = await ftlist;
+    if (tlist != null) {
+      for (Tuple3<bool,String,String> tup in tlist) {
+        _buildChatText(tup.item1, tup.item2, tup.item3);
+      }
+    }
+  }
+
   Widget build(BuildContext context) {
+
+    final String url = "https://api.iextrading.com/1.0/stock/aapl/chart";
+    //Future<List<Tuple3<bool,String,String>>> tlist = getData(url);
+    buildWait(getData(url));
+    print("TWO");
+    //print(tlist);
+
+    print("THREE");
     for (int i = 0; i < _messages.length; i++) {
       print(_messages[i].text);
     }
+
     return CupertinoPageScaffold(
       child: Column(
         children: <Widget>[
-
           Flexible(
             child: ListView.builder(
               padding: EdgeInsets.all(8.0),

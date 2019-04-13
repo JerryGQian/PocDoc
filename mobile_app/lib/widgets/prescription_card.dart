@@ -3,9 +3,9 @@
 // found in the LICENSE file.
 
 import 'package:flutter/cupertino.dart';
-import 'package:veggieseasons/data/medication.dart';
-import 'package:veggieseasons/screens/details.dart';
-import 'package:veggieseasons/styles.dart';
+import 'package:pocketmd/data/medication.dart';
+import 'package:pocketmd/screens/details.dart';
+import 'package:pocketmd/styles.dart';
 
 /// A Card-like Widget that responds to tap events by animating changes to its
 /// elevation and invoking an optional [onPressed] callback.

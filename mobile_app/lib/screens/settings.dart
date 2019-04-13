@@ -6,11 +6,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:veggieseasons/data/preferences.dart';
-import 'package:veggieseasons/data/medication.dart';
-import 'package:veggieseasons/styles.dart';
-import 'package:veggieseasons/widgets/settings_group.dart';
-import 'package:veggieseasons/widgets/settings_item.dart';
+import 'package:pocketmd/data/preferences.dart';
+import 'package:pocketmd/data/medication.dart';
+import 'package:pocketmd/styles.dart';
+import 'package:pocketmd/widgets/settings_group.dart';
+import 'package:pocketmd/widgets/settings_item.dart';
 
 class VeggieCategorySettingsScreen extends StatelessWidget {
   @override

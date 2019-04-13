@@ -5,10 +5,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart' show DeviceOrientation, SystemChrome;
 import 'package:scoped_model/scoped_model.dart';
-import 'package:veggieseasons/data/app_state.dart';
-import 'package:veggieseasons/data/preferences.dart';
-import 'package:veggieseasons/screens/home.dart';
-import 'package:veggieseasons/styles.dart';
+import 'package:pocketmd/data/app_state.dart';
+import 'package:pocketmd/data/preferences.dart';
+import 'package:pocketmd/screens/home.dart';
+import 'package:pocketmd/styles.dart';
 
 void main() {
   SystemChrome.setPreferredOrientations([

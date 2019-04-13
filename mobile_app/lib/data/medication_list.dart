@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:flutter/cupertino.dart';
-import 'package:veggieseasons/data/medication.dart';
+import 'package:pocketmd/data/medication.dart';
 
 class MedicationList {
   static List<Medication> medications = [
