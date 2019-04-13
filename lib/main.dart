@@ -41,8 +41,18 @@ class HomeScreen extends StatelessWidget {
         ]
       ),
       tabBuilder: (context, i) {
-        return Center(
-          child: Text('Hello, $i!'),
+        return CupertinoPageScaffold(
+          navigationBar: CupertinoNavigationBar(
+            middle: (i==0) ? Text('Articles') : Text('Views'),
+          ),
+          child: Center(
+            child: Text(
+              "This is tab #$i",
+              style: CupertinoTheme.of(context)
+                .textTheme
+                .navLargeTitleTextStyle,
+            )
+          ),
         );
       }
     );
