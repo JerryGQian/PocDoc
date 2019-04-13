@@ -47,8 +47,8 @@ class _PrescriptionsScreenState extends State<PrescriptionsScreen> {
     );
   }
 
-  Widget _buildSearchResults(List<Medication> veggies) {
-    if (veggies.isEmpty) {
+  Widget _buildSearchResults(List<Medication> medications) {
+    if (medications.isEmpty) {
       return Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -61,11 +61,11 @@ class _PrescriptionsScreenState extends State<PrescriptionsScreen> {
     }
 
     return ListView.builder(
-      itemCount: veggies.length,
+      itemCount: medications.length,
       itemBuilder: (context, i) {
         return Padding(
           padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 24.0),
-          child: PrescriptionHeadline(veggies[i]),
+          child: PrescriptionHeadline(medications[i]),
         );
       },
     );

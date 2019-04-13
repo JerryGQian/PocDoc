@@ -73,6 +73,7 @@ class Medication {
   Medication({
     @required this.id,
     @required this.name,
+    this.medicalName,
     @required this.imageAssetPath,
     @required this.category,
     @required this.shortDescription,
@@ -89,6 +90,7 @@ class Medication {
   final int id;
 
   final String name;
+  final String medicalName;
 
   /// Each veggie has an associated image asset that's used as a background
   /// image and icon.

@@ -12,10 +12,10 @@ import 'package:veggieseasons/styles.dart';
 import 'package:veggieseasons/widgets/close_button.dart';
 import 'package:veggieseasons/widgets/trivia.dart';
 
-class ServingInfoChart extends StatelessWidget {
-  const ServingInfoChart(this.veggie, this.prefs);
+class PrescriptionChart extends StatelessWidget {
+  const PrescriptionChart(this.medication, this.prefs);
 
-  final Medication veggie;
+  final Medication medication;
 
   final Preferences prefs;
 
@@ -51,7 +51,7 @@ class ServingInfoChart extends StatelessWidget {
               bottom: 4.0,
             ),
             child: Text(
-              'Serving info',
+              'Prescription info',
               style: Styles.detailsServingHeaderText,
             ),
           ),
@@ -69,13 +69,13 @@ class ServingInfoChart extends StatelessWidget {
                     children: [
                       TableCell(
                         child: Text(
-                          'Serving size:',
+                          'Quantity:',
                           style: Styles.detailsServingLabelText,
                         ),
                       ),
                       TableCell(
                         child: Text(
-                          veggie.servingSize,
+                          medication.servingSize,
                           textAlign: TextAlign.end,
                           style: Styles.detailsServingValueText,
                         ),
@@ -86,13 +86,13 @@ class ServingInfoChart extends StatelessWidget {
                     children: [
                       TableCell(
                         child: Text(
-                          'Calories:',
+                          'Refills:',
                           style: Styles.detailsServingLabelText,
                         ),
                       ),
                       TableCell(
                         child: Text(
-                          '${veggie.caloriesPerServing} kCal',
+                          '${medication.caloriesPerServing} kCal',
                           textAlign: TextAlign.end,
                           style: Styles.detailsServingValueText,
                         ),
@@ -103,13 +103,13 @@ class ServingInfoChart extends StatelessWidget {
                     children: [
                       TableCell(
                         child: Text(
-                          'Vitamin A:',
+                          'Orig. Rx:',
                           style: Styles.detailsServingLabelText,
                         ),
                       ),
                       TableCell(
                         child: _buildVitaminText(
-                          veggie.vitaminAPercentage,
+                          medication.vitaminAPercentage,
                           prefs.desiredCalories,
                         ),
                       ),
@@ -119,13 +119,13 @@ class ServingInfoChart extends StatelessWidget {
                     children: [
                       TableCell(
                         child: Text(
-                          'Vitamin C:',
+                          'Physician:',
                           style: Styles.detailsServingLabelText,
                         ),
                       ),
                       TableCell(
                         child: _buildVitaminText(
-                          veggie.vitaminCPercentage,
+                          medication.vitaminCPercentage,
                           prefs.desiredCalories,
                         ),
                       ),
@@ -139,9 +139,7 @@ class ServingInfoChart extends StatelessWidget {
                   future: prefs.desiredCalories,
                   builder: (context, snapshot) {
                     return Text(
-                      'Percent daily values based on a diet of ' +
-                          '${snapshot?.data ?? '2,000'} calories.',
-                      style: Styles.detailsServingNoteText,
+                      medication.shortDescription,
                     );
                   },
                 ),
@@ -162,11 +160,11 @@ class InfoView extends StatelessWidget {
   Widget build(BuildContext context) {
     final appState = ScopedModel.of<AppState>(context, rebuildOnChange: true);
     final prefs = ScopedModel.of<Preferences>(context, rebuildOnChange: true);
-    final veggie = appState.getVeggie(id);
+    final medication = appState.getVeggie(id);
 
     final seasonIcons = <Widget>[];
 
-    for (Season season in veggie.seasons) {
+    for (Season season in medication.seasons) {
       seasonIcons.addAll([
         SizedBox(width: 12.0),
         Padding(
@@ -192,9 +190,9 @@ class InfoView extends StatelessWidget {
                 future: prefs.preferredCategories,
                 builder: (context, snapshot) {
                   return Text(
-                    veggie.categoryName.toUpperCase(),
+                    medication.categoryName.toUpperCase(),
                     style: (snapshot.hasData &&
-                            snapshot.data.contains(veggie.category))
+                            snapshot.data.contains(medication.category))
                         ? Styles.detailsPreferredCategoryText
                         : Styles.detailsCategoryText,
                   );
@@ -204,28 +202,47 @@ class InfoView extends StatelessWidget {
             ]..addAll(seasonIcons),
           ),
           SizedBox(height: 8.0),
-          Text(
-            veggie.name,
-            style: Styles.detailsTitleText,
+
+          Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: <Widget>[
+                Text(
+                  medication.name,
+                  style: Styles.detailsTitleText,
+                ),
+                Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: new Align(
+                      alignment: Alignment.bottomLeft,
+                    child: Text(
+                      medication.medicalName,
+                      style: Styles.detailsDescriptionText,
+                    )
+                  ),
+                ),
+
+              ]
           ),
+
+
           SizedBox(height: 8.0),
           Text(
-            veggie.shortDescription,
+            medication.shortDescription,
             style: Styles.detailsDescriptionText,
           ),
-          ServingInfoChart(veggie, prefs),
+          PrescriptionChart(medication, prefs),
           SizedBox(height: 24.0),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               CupertinoSwitch(
-                value: veggie.isFavorite,
+                value: medication.isFavorite,
                 onChanged: (value) {
                   appState.setFavorite(id, value);
                 },
               ),
               SizedBox(width: 8.0),
-              Text('Save to Garden'),
+              Text('Save to Favorites'),
             ],
           ),
         ],

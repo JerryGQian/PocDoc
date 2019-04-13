@@ -25,10 +25,6 @@ class HomeScreen extends StatelessWidget {
           title: Text('My Garden'),
         ),
         BottomNavigationBarItem(
-          icon: Icon(CupertinoIcons.search),
-          title: Text('Search'),
-        ),
-        BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.pencil),
           title: Text('Prescriptions'),
         ),
@@ -47,10 +43,8 @@ class HomeScreen extends StatelessWidget {
         } else if (index == 1) {
           return FavoritesScreen();
         } else if (index == 2) {
-          return SearchScreen();
-        } else if (index == 3) {
           return PrescriptionsScreen();
-        } else if (index == 4) {
+        } else if (index == 3) {
           return ChatScreen();
         } else {
           return SettingsScreen();

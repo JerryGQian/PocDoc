@@ -4,12 +4,12 @@
 
 import 'package:scoped_model/scoped_model.dart';
 import 'package:veggieseasons/data/medication.dart';
-import 'package:veggieseasons/data/prescriptions_list.dart';
+import 'package:veggieseasons/data/presciption_list.dart';
 
 class AppState extends Model {
   List<Medication> _veggies;
 
-  AppState() : _veggies = PrescriptionsList.medications;
+  AppState() : _veggies = PrescriptionList.medications;
 
   List<Medication> get allVeggies => List<Medication>.from(_veggies);
 
