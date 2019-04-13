@@ -201,10 +201,10 @@ abstract class Styles {
   };
 
   static const seasonIconData = {
-    Season.winter: FontAwesomeIcons.snowflake,
-    Season.spring: FontAwesomeIcons.leaf,
-    Season.summer: FontAwesomeIcons.umbrellaBeach,
-    Season.autumn: FontAwesomeIcons.canadianMapleLeaf,
+    Season.winter: FontAwesomeIcons.prescription,
+    Season.spring: FontAwesomeIcons.heartbeat,
+    Season.summer: FontAwesomeIcons.stethoscope,
+    Season.autumn: FontAwesomeIcons.medkit,
   };
 
   static const seasonBorder = Border(

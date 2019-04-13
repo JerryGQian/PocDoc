@@ -3,13 +3,10 @@
 // found in the LICENSE file.
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:scoped_model/scoped_model.dart';
-import 'package:veggieseasons/data/app_state.dart';
-import 'package:veggieseasons/data/prescription.dart';
-import 'package:veggieseasons/styles.dart';
-import 'package:veggieseasons/widgets/search_bar.dart';
-import 'package:veggieseasons/widgets/prescription_headline.dart';
+import 'package:veggieseasons/widgets/chat_message.dart';
+
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -17,63 +14,73 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  final controller = TextEditingController();
-  final focusNode = FocusNode();
-  String terms = '';
+  final List<ChatMessage> _messages = <ChatMessage>[]; // new
+  final TextEditingController _textController = new TextEditingController();
 
-  @override
+  /*@override
   void initState() {
     super.initState();
-    controller.addListener(_onTextChanged);
+    _textController = TextEditingController(text: 'initial text');
+  }*/
+
+  void _handleSubmitted(String text) {
+    _textController.clear();
+    ChatMessage message = ChatMessage(
+      text: text,
+    );
+    setState(() {
+      _messages.insert(0, message);
+    });
   }
 
-  @override
-  void dispose() {
-    focusNode.dispose();
-    super.dispose();
-  }
-
-  void _onTextChanged() {
-    setState(() => terms = controller.text);
-  }
-
-  Widget _createSearchBox() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SearchBar(
-        controller: controller,
-        focusNode: focusNode,
+  Widget _buildTextComposer() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Row(
+        children: <Widget>[
+          Flexible(
+            child: CupertinoTextField(
+              controller: _textController,
+              onSubmitted: _handleSubmitted,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 4.0),
+            child: CupertinoButton(
+                child: Text("Send"),
+                onPressed: () => _handleSubmitted(_textController.text)
+            ),
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildSearchResults(List<Prescription> prescriptions) {
-    if (prescriptions.isEmpty) {
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Text(
-            'No prescriptions matching your search.',
-            style: Styles.headlineDescription,
+  Widget build(BuildContext context) {
+    return CupertinoPageScaffold(
+      child: Column(
+        children: <Widget>[
+          Flexible(
+            child: ListView.builder(
+              padding: EdgeInsets.all(8.0),
+              reverse: true,
+              itemBuilder: (_, int index) => _messages[index],
+              itemCount: _messages.length,
+            ),
           ),
-        ),
-      );
-    }
-
-    final model = ScopedModel.of<AppState>(context, rebuildOnChange: true);
-
-    return ListView.builder(
-      itemCount: prescriptions.length,
-      itemBuilder: (context, i) {
-        return Padding(
-          padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 24.0),
-          child: PrescriptionHeadline(prescriptions[i], model.getMedication(prescriptions[i])),
-        );
-      },
+          //new Divider(height: 1.0),
+          Container(
+            child: _buildTextComposer(),
+          ),
+        ],
+      ),
     );
   }
 
-  @override
+
+
+
+  /*@override
   Widget build(BuildContext context) {
     final model = ScopedModel.of<AppState>(context, rebuildOnChange: true);
 
@@ -97,5 +104,5 @@ class _ChatScreenState extends State<ChatScreen> {
         );
       },
     );
-  }
+  }*/
 }

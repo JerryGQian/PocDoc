@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.book),
-          title: Text('My Garden'),
+          title: Text('Favorites'),
         ),
         BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.pencil),

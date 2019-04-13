@@ -6,24 +6,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
 
 enum MedicationCategory {
-  allium,
-  berry,
-  citrus,
-  cruciferous,
-  fern,
-  flower,
-  fruit,
-  fungus,
-  gourd,
-  leafy,
-  legume,
-  melon,
-  root,
-  stealthFruit,
-  stoneFruit,
-  tropical,
-  tuber,
-  vegetable,
+  bloodPressure,
+  antiClotting,
+  atrialFibrilation,
+  cholesterol,
+  diabetes,
+  postStroke,
 }
 
 enum Season {
@@ -33,33 +21,13 @@ enum Season {
   autumn,
 }
 
-class Trivia {
-  final String question;
-  final List<String> answers;
-  final int correctAnswerIndex;
-
-  const Trivia(this.question, this.answers, this.correctAnswerIndex);
-}
-
 const Map<MedicationCategory, String> medicationCategoryNames = {
-  MedicationCategory.allium: 'Allium',
-  MedicationCategory.berry: 'Berry',
-  MedicationCategory.citrus: 'Citrus',
-  MedicationCategory.cruciferous: 'Cruciferous',
-  MedicationCategory.fern: 'Technically a fern',
-  MedicationCategory.flower: 'Flower',
-  MedicationCategory.fruit: 'Fruit',
-  MedicationCategory.fungus: 'Fungus',
-  MedicationCategory.gourd: 'Gourd',
-  MedicationCategory.leafy: 'Leafy',
-  MedicationCategory.legume: 'Legume',
-  MedicationCategory.melon: 'Melon',
-  MedicationCategory.root: 'Root vegetable',
-  MedicationCategory.stealthFruit: 'Stealth fruit',
-  MedicationCategory.stoneFruit: 'Stone fruit',
-  MedicationCategory.tropical: 'Tropical',
-  MedicationCategory.tuber: 'Tuber',
-  MedicationCategory.vegetable: 'Vegetable',
+  MedicationCategory.bloodPressure: 'Blood pressure',
+  MedicationCategory.antiClotting: 'Anti-clotting',
+  MedicationCategory.atrialFibrilation: 'Atrial fibrilation',
+  MedicationCategory.cholesterol: 'Cholesterol',
+  MedicationCategory.diabetes: 'Diabetes',
+  MedicationCategory.postStroke: 'Post stroke',
 };
 
 const Map<Season, String> seasonNames = {
@@ -81,11 +49,6 @@ class Medication {
     @required this.shortDescription,
     @required this.accentColor,
     @required this.seasons,
-    @required this.vitaminAPercentage,
-    @required this.vitaminCPercentage,
-    @required this.servingSize,
-    @required this.caloriesPerServing,
-    @required this.trivia,
     this.isFavorite = false,
   });
 
@@ -110,26 +73,9 @@ class Medication {
   /// Seasons during which a veggie is harvested.
   final List<Season> seasons;
 
-  /// Percentage of the FDA's recommended daily value of vitamin A for someone
-  /// with a 2,000 calorie diet.
-  final int vitaminAPercentage;
-
-  /// Percentage of the FDA's recommended daily value of vitamin C for someone
-  /// with a 2,000 calorie diet.
-  final int vitaminCPercentage;
-
-  /// A text description of a single serving (e.g. '1 apple' or '1/2 cup').
-  final String servingSize;
-
-  /// Calories per serving (as described in [servingSize]).
-  final int caloriesPerServing;
-
   /// Whether or not the veggie has been saved to the user's garden (i.e. marked
   /// as a favorite).
   bool isFavorite;
-
-  /// A set of trivia questions and answers related to the veggie.
-  final List<Trivia> trivia;
 
   String get categoryName => medicationCategoryNames[category];
 }
