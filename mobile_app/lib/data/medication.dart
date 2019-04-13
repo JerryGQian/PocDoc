@@ -14,15 +14,6 @@ enum MedicationCategory {
   postStroke,
 }
 
-enum MedicationType {
-  bloodPressure,
-  antiClotting,
-  atrialFibrilation,
-  cholesterol,
-  diabetes,
-  postStroke,
-}
-
 const Map<MedicationCategory, String> medicationCategoryNames = {
   MedicationCategory.bloodPressure: 'Blood pressure',
   MedicationCategory.antiClotting: 'Anti-clotting',

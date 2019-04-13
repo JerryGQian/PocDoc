@@ -43,34 +43,34 @@ class AppState extends Model {
     notifyListeners();
   }
 
-  static MedicationType _getSeasonForDate(DateTime date) {
+  static MedicationCategory _getSeasonForDate(DateTime date) {
     // Technically the start and end dates of seasons can vary by a day or so,
     // but this is close enough for produce.
     switch (date.month) {
       case 1:
-        return MedicationType.postStroke;
+        return MedicationCategory.postStroke;
       case 2:
-        return MedicationType.postStroke;
+        return MedicationCategory.postStroke;
       case 3:
-        return date.day < 21 ? MedicationType.postStroke : MedicationType.postStroke;
+        return date.day < 21 ? MedicationCategory.postStroke : MedicationCategory.postStroke;
       case 4:
-        return MedicationType.postStroke;
+        return MedicationCategory.postStroke;
       case 5:
-        return MedicationType.postStroke;
+        return MedicationCategory.postStroke;
       case 6:
-        return date.day < 21 ? MedicationType.postStroke : MedicationType.postStroke;
+        return date.day < 21 ? MedicationCategory.postStroke : MedicationCategory.postStroke;
       case 7:
-        return MedicationType.postStroke;
+        return MedicationCategory.postStroke;
       case 8:
-        return MedicationType.postStroke;
+        return MedicationCategory.postStroke;
       case 9:
-        return date.day < 22 ? MedicationType.postStroke : MedicationType.postStroke;
+        return date.day < 22 ? MedicationCategory.postStroke : MedicationCategory.postStroke;
       case 10:
-        return MedicationType.postStroke;
+        return MedicationCategory.postStroke;
       case 11:
-        return MedicationType.postStroke;
+        return MedicationCategory.postStroke;
       case 12:
-        return date.day < 22 ? MedicationType.postStroke : MedicationType.postStroke;
+        return date.day < 22 ? MedicationCategory.postStroke : MedicationCategory.postStroke;
       default:
         throw ArgumentError('Can\'t return a season for month #${date.month}.');
     }
