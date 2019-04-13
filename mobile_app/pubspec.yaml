@@ -1,4 +1,4 @@
-name: veggieseasons
+name: pocketmd
 description: An iOS app that shows the fruits and veggies currently in season.
 
 version: 1.0.0+1
@@ -10,7 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  tuple: ^1.0.2
   cupertino_icons: ^0.1.2
+  http: any
   font_awesome_flutter: ^8.4.0
   intl: ^0.15.7
   scoped_model: ^1.0.1

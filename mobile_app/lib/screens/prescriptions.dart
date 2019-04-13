@@ -5,11 +5,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:veggieseasons/data/app_state.dart';
-import 'package:veggieseasons/data/prescription.dart';
-import 'package:veggieseasons/styles.dart';
-import 'package:veggieseasons/widgets/search_bar.dart';
-import 'package:veggieseasons/widgets/prescription_headline.dart';
+import 'package:pocketmd/data/app_state.dart';
+import 'package:pocketmd/data/prescription.dart';
+import 'package:pocketmd/styles.dart';
+import 'package:pocketmd/widgets/search_bar.dart';
+import 'package:pocketmd/widgets/prescription_headline.dart';
 
 class PrescriptionsScreen extends StatefulWidget {
   @override

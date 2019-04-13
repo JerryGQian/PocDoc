@@ -5,11 +5,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:veggieseasons/data/app_state.dart';
-import 'package:veggieseasons/data/prescription.dart';
-import 'package:veggieseasons/data/medication.dart';
-import 'package:veggieseasons/styles.dart';
-import 'package:veggieseasons/widgets/prescription_headline.dart';
+import 'package:pocketmd/data/app_state.dart';
+import 'package:pocketmd/data/prescription.dart';
+import 'package:pocketmd/data/medication.dart';
+import 'package:pocketmd/styles.dart';
+import 'package:pocketmd/widgets/prescription_headline.dart';
 
 class FavoritesScreen extends StatelessWidget {
   /// Builds the "content" of the favorites screen: either a list of favorite
