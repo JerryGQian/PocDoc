@@ -15,29 +15,31 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   final List<ChatMessage> _messages = <ChatMessage>[]; // new
-  final TextEditingController _textController = new TextEditingController();
+  TextEditingController _textController = new TextEditingController();
 
 
-  /*@override
+  @override
   void initState() {
     super.initState();
     _textController = TextEditingController(text: 'initial text');
-  }*/
+  }
 
   void _handleSubmitted(String text) {
-    print("Yo man one ");
+    print("Yo man 1 ");
     print(_messages.length);
     _textController.clear();
-    ChatMessage message = ChatMessage(
-      text: text,
-    );
-    setState(() {
-      _messages.insert(0, message);
-    });
+    if (text.length > 0) {
+      ChatMessage message = ChatMessage(
+        text: text,
+      );
+      setState(() {
+        _messages.insert(0, message);
+      });
+    }
   }
 
   Widget _buildTextComposer() {
-    print("Yo man");
+    print("Yo man 2");
     print(_messages.length);
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -62,20 +64,25 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Widget build(BuildContext context) {
-    print("Yo man 3");
+    print("Yo man build");
     print(_messages.length);
     return CupertinoPageScaffold(
       child: Column(
         children: <Widget>[
+
           Flexible(
             child: ListView.builder(
               padding: EdgeInsets.all(8.0),
               reverse: true,
-              itemBuilder: (_, index) => _messages[index],
               itemCount: _messages.length,
+              itemBuilder: (context, int index) => _messages[index],
             ),
           ),
+          Divider(height: 1.0),
           Container(
+            padding: EdgeInsets.only(bottom: 50.0),
+            decoration: new BoxDecoration(
+                color: Theme.of(context).cardColor),
             child: _buildTextComposer(),
           ),
         ],
@@ -83,26 +90,6 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  /*Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      child: Column(
-        children: <Widget>[
-          Flexible(
-            child: ListView.builder(
-              padding: EdgeInsets.all(8.0),
-              reverse: true,
-              itemBuilder: (_, int index) => _messages[index],
-              itemCount: _messages.length,
-            ),
-          ),
-          //new Divider(height: 1.0),
-          Container(
-            child: _buildTextComposer(),
-          ),
-        ],
-      ),
-    );
-  }*/
 
 
   /*@override
