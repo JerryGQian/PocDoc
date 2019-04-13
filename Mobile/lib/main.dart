@@ -46,24 +46,26 @@ class HomeScreen extends StatelessWidget {
             middle: (i==0) ? Text('Articles') : Text('Views'),
           ),
           child: Center(
-            child: Text(
-              "This is tab #$i",
-              style: CupertinoTheme.of(context)
-                .textTheme
-                .navLargeTitleTextStyle,
-            )
+            child: CupertinoButton(
+              child: Text(
+                "This is tab #$i",
+                style: CupertinoTheme.of(context)
+                  .textTheme
+                  .navLargeTitleTextStyle
+                  .copyWith(fontSize: 32),
+              ),
+              onPressed: () {
+                Navigator.of(context).push(
+                  CupertinoPageRoute(builder: (context) {
+                    return DetailScreen(i == 0 ? 'Articles' : 'Views');
+                  }),
+                );
+              },
+            ),
           ),
         );
       }
     );
   }
-
-  /*
-  return CupertinoPageScaffold(
-      child: Center(
-        child: Text('Hello world',
-        style: CupertinoTheme.of(context).textTheme.navLargeTitleTextStyle),
-      )
-    );
-   */
 }
+
