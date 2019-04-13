@@ -8,12 +8,14 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:veggieseasons/data/app_state.dart';
 import 'package:veggieseasons/data/preferences.dart';
 import 'package:veggieseasons/data/medication.dart';
+import 'package:veggieseasons/data/prescription.dart';
 import 'package:veggieseasons/styles.dart';
 import 'package:veggieseasons/widgets/close_button.dart';
-import 'package:veggieseasons/widgets/trivia.dart';
 
 class PrescriptionChart extends StatelessWidget {
-  const PrescriptionChart(this.medication, this.prefs);
+  const PrescriptionChart(this.prescription, this.medication, this.prefs);
+
+  final Prescription prescription;
 
   final Medication medication;
 
@@ -22,7 +24,7 @@ class PrescriptionChart extends StatelessWidget {
   // Creates a [Text] widget to display a veggie's "percentage of your daily
   // value of this vitamin" data adjusted for the user's preferred calorie
   // target.
-  Widget _buildVitaminText(int standardPercentage, Future<int> targetCalories) {
+  Widget _buildPrescriptionText(int standardPercentage, Future<int> targetCalories) {
     return FutureBuilder(
       future: targetCalories,
       builder: (context, snapshot) {
@@ -75,7 +77,7 @@ class PrescriptionChart extends StatelessWidget {
                       ),
                       TableCell(
                         child: Text(
-                          medication.servingSize,
+                          prescription.quantity.toString(),
                           textAlign: TextAlign.end,
                           style: Styles.detailsServingValueText,
                         ),
@@ -92,7 +94,7 @@ class PrescriptionChart extends StatelessWidget {
                       ),
                       TableCell(
                         child: Text(
-                          '${medication.caloriesPerServing} kCal',
+                          prescription.refills.toString(),
                           textAlign: TextAlign.end,
                           style: Styles.detailsServingValueText,
                         ),
@@ -108,9 +110,10 @@ class PrescriptionChart extends StatelessWidget {
                         ),
                       ),
                       TableCell(
-                        child: _buildVitaminText(
-                          medication.vitaminAPercentage,
-                          prefs.desiredCalories,
+                        child: Text(
+                          prescription.date.month.toString() + "/" + prescription.date.day.toString() + "/" + prescription.date.year.toString(),
+                          textAlign: TextAlign.end,
+                          style: Styles.detailsServingValueText,
                         ),
                       ),
                     ],
@@ -124,9 +127,10 @@ class PrescriptionChart extends StatelessWidget {
                         ),
                       ),
                       TableCell(
-                        child: _buildVitaminText(
-                          medication.vitaminCPercentage,
-                          prefs.desiredCalories,
+                        child: Text(
+                          prescription.physicianName,
+                          textAlign: TextAlign.end,
+                          style: Styles.detailsServingValueText,
                         ),
                       ),
                     ],
@@ -139,7 +143,7 @@ class PrescriptionChart extends StatelessWidget {
                   future: prefs.desiredCalories,
                   builder: (context, snapshot) {
                     return Text(
-                      medication.shortDescription,
+                      prescription.prescriptionDescription,
                     );
                   },
                 ),
@@ -160,7 +164,8 @@ class InfoView extends StatelessWidget {
   Widget build(BuildContext context) {
     final appState = ScopedModel.of<AppState>(context, rebuildOnChange: true);
     final prefs = ScopedModel.of<Preferences>(context, rebuildOnChange: true);
-    final medication = appState.getVeggie(id);
+    final prescription = appState.getPrescription(id);
+    final medication = appState.getMedication(prescription);
 
     final seasonIcons = <Widget>[];
 
@@ -230,7 +235,7 @@ class InfoView extends StatelessWidget {
             medication.shortDescription,
             style: Styles.detailsDescriptionText,
           ),
-          PrescriptionChart(medication, prefs),
+          PrescriptionChart(prescription, medication, prefs),
           SizedBox(height: 24.0),
           Row(
             mainAxisSize: MainAxisSize.min,
@@ -254,6 +259,7 @@ class InfoView extends StatelessWidget {
 class DetailsScreen extends StatefulWidget {
   final int id;
 
+
   DetailsScreen(this.id);
 
   @override
@@ -264,7 +270,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
   int _selectedViewIndex = 0;
 
   Widget _buildHeader(BuildContext context, AppState model) {
-    final veggie = model.getVeggie(widget.id);
+    print("Widget id: ");
+    print(widget.id);
+    final veggie = model.getMedication(model.getPrescription(widget.id));
 
     return SizedBox(
       height: 150.0,
@@ -308,7 +316,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               children: [
                 CupertinoSegmentedControl(
                   children: {
-                    0: Text('Facts & Info'),
+                    0: Text('Prescription & Info'),
                     1: Text('Trivia'),
                   },
                   groupValue: _selectedViewIndex,
@@ -318,7 +326,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 ),
                 _selectedViewIndex == 0
                     ? InfoView(widget.id)
-                    : TriviaView(widget.id),
+                    : InfoView(widget.id),
               ],
             ),
           ),

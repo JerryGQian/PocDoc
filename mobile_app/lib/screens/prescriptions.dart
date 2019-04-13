@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:veggieseasons/data/app_state.dart';
-import 'package:veggieseasons/data/medication.dart';
+import 'package:veggieseasons/data/prescription.dart';
 import 'package:veggieseasons/styles.dart';
 import 'package:veggieseasons/widgets/search_bar.dart';
 import 'package:veggieseasons/widgets/prescription_headline.dart';
@@ -47,8 +47,8 @@ class _PrescriptionsScreenState extends State<PrescriptionsScreen> {
     );
   }
 
-  Widget _buildSearchResults(List<Medication> medications) {
-    if (medications.isEmpty) {
+  Widget _buildSearchResults(List<Prescription> prescriptions) {
+    if (prescriptions.isEmpty) {
       return Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -60,12 +60,14 @@ class _PrescriptionsScreenState extends State<PrescriptionsScreen> {
       );
     }
 
+    final model = ScopedModel.of<AppState>(context, rebuildOnChange: true);
+
     return ListView.builder(
-      itemCount: medications.length,
+      itemCount: prescriptions.length,
       itemBuilder: (context, i) {
         return Padding(
           padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 24.0),
-          child: PrescriptionHeadline(medications[i]),
+          child: PrescriptionHeadline(prescriptions[i], model.getMedication(prescriptions[i])),
         );
       },
     );
@@ -87,7 +89,7 @@ class _PrescriptionsScreenState extends State<PrescriptionsScreen> {
               children: [
                 _createSearchBox(),
                 Expanded(
-                  child: _buildSearchResults(model.searchVeggies(terms)),
+                  child: _buildSearchResults(model.searchPrescriptions(terms)),
                 ),
               ],
             ),

@@ -4,13 +4,15 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:veggieseasons/data/medication.dart';
+import 'package:veggieseasons/data/prescription.dart';
 import 'package:veggieseasons/screens/details.dart';
 import 'package:veggieseasons/styles.dart';
 
 class PrescriptionHeadline extends StatelessWidget {
+  final Prescription prescription;
   final Medication medication;
 
-  const PrescriptionHeadline(this.medication);
+  const PrescriptionHeadline(this.prescription, this.medication);
 
   List<Widget> _buildSeasonDots(List<Season> seasons) {
     List<Widget> widgets = <Widget>[];
@@ -36,7 +38,7 @@ class PrescriptionHeadline extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.of(context).push(CupertinoPageRoute(
-            builder: (context) => DetailsScreen(medication.id),
+            builder: (context) => DetailsScreen(prescription.id),
             fullscreenDialog: true,
           )),
       child: Row(

@@ -5,8 +5,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:veggieseasons/screens/favorites.dart';
-import 'package:veggieseasons/screens/list.dart';
-import 'package:veggieseasons/screens/search.dart';
 import 'package:veggieseasons/screens/prescriptions.dart';
 import 'package:veggieseasons/screens/chat.dart';
 import 'package:veggieseasons/screens/settings.dart';
@@ -39,7 +37,7 @@ class HomeScreen extends StatelessWidget {
       ]),
       tabBuilder: (context, index) {
         if (index == 0) {
-          return ListScreen();
+          return PrescriptionsScreen();
         } else if (index == 1) {
           return FavoritesScreen();
         } else if (index == 2) {

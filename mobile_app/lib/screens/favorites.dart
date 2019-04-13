@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:veggieseasons/data/app_state.dart';
+import 'package:veggieseasons/data/prescription.dart';
 import 'package:veggieseasons/data/medication.dart';
 import 'package:veggieseasons/styles.dart';
 import 'package:veggieseasons/widgets/prescription_headline.dart';
@@ -30,11 +31,11 @@ class FavoritesScreen extends StatelessWidget {
       SizedBox(height: 24.0),
     ];
 
-    for (Medication veggie in model.favoriteVeggies) {
+    for (Prescription prescription in model.favoriteVeggies) {
       rows.add(
         Padding(
           padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 24.0),
-          child: PrescriptionHeadline(veggie),
+          child: PrescriptionHeadline(prescription, model.getMedication(prescription)),
         ),
       );
     }

@@ -69,6 +69,8 @@ const Map<Season, String> seasonNames = {
   Season.autumn: 'Autumn',
 };
 
+
+
 class Medication {
   Medication({
     @required this.id,

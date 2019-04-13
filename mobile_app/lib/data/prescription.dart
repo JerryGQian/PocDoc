@@ -10,6 +10,7 @@ class Prescription {
     @required this.id,
     @required this.name,
     @required this.prescriptionDescription,
+    @required this.physicianName,
     @required this.quantity,
     @required this.refills,
     @required this.date,
@@ -19,14 +20,14 @@ class Prescription {
   final int id;
 
   final String name;
-
   final String prescriptionDescription;
+  final String physicianName;
 
   /// Each veggie has an associated image asset that's used as a background
   /// image and icon.
   final int quantity;
   final int refills;
-  final int date;
+  final DateTime date;
 
   /// Whether or not the veggie has been saved to the user's garden (i.e. marked
   /// as a favorite).

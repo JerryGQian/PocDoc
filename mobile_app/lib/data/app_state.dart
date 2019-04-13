@@ -4,36 +4,41 @@
 
 import 'package:scoped_model/scoped_model.dart';
 import 'package:veggieseasons/data/medication.dart';
+import 'package:veggieseasons/data/medication_list.dart';
+import 'package:veggieseasons/data/prescription.dart';
 import 'package:veggieseasons/data/presciption_list.dart';
 
 class AppState extends Model {
-  List<Medication> _veggies;
+  List<Prescription> _prescriptions;
+  List<Medication> _medications;
 
-  AppState() : _veggies = PrescriptionList.medications;
+  AppState() : _prescriptions = PrescriptionList.prescriptions, _medications = MedicationList.medications;
 
-  List<Medication> get allVeggies => List<Medication>.from(_veggies);
-
-  Medication getVeggie(int id) => _veggies.singleWhere((v) => v.id == id);
-
-  List<Medication> get availableVeggies {
-    Season currentSeason = _getSeasonForDate(DateTime.now());
-    return _veggies.where((v) => v.seasons.contains(currentSeason)).toList();
+  Medication getMedication(Prescription p) {
+    return _medications.singleWhere((m) => m.name == p.name);
   }
 
-  List<Medication> get unavailableVeggies {
-    Season currentSeason = _getSeasonForDate(DateTime.now());
-    return _veggies.where((v) => !v.seasons.contains(currentSeason)).toList();
+  List<Prescription> get allVeggies => List<Prescription>.from(_prescriptions);
+
+  Prescription getPrescription(int id) => _prescriptions.singleWhere((v) => v.id == id);
+
+  List<Prescription> get availableVeggies {
+    return _prescriptions.toList();
   }
 
-  List<Medication> get favoriteVeggies =>
-      _veggies.where((v) => v.isFavorite).toList();
+  List<Prescription> get unavailableVeggies {
+    return _prescriptions.toList();
+  }
 
-  List<Medication> searchVeggies(String terms) => _veggies
+  List<Prescription> get favoriteVeggies =>
+      _prescriptions.where((v) => v.isFavorite).toList();
+
+  List<Prescription> searchPrescriptions(String terms) => _prescriptions
       .where((v) => v.name.toLowerCase().contains(terms.toLowerCase()))
       .toList();
 
   void setFavorite(int id, bool isFavorite) {
-    Medication veggie = getVeggie(id);
+    Prescription veggie = getPrescription(id);
     veggie.isFavorite = isFavorite;
     notifyListeners();
   }
