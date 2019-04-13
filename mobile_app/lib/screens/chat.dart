@@ -1,0 +1,99 @@
+// Copyright 2018 The Flutter team. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'package:veggieseasons/data/app_state.dart';
+import 'package:veggieseasons/data/medication.dart';
+import 'package:veggieseasons/styles.dart';
+import 'package:veggieseasons/widgets/search_bar.dart';
+import 'package:veggieseasons/widgets/prescription_headline.dart';
+
+class ChatScreen extends StatefulWidget {
+  @override
+  _ChatScreenState createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  final controller = TextEditingController();
+  final focusNode = FocusNode();
+  String terms = '';
+
+  @override
+  void initState() {
+    super.initState();
+    controller.addListener(_onTextChanged);
+  }
+
+  @override
+  void dispose() {
+    focusNode.dispose();
+    super.dispose();
+  }
+
+  void _onTextChanged() {
+    setState(() => terms = controller.text);
+  }
+
+  Widget _createSearchBox() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SearchBar(
+        controller: controller,
+        focusNode: focusNode,
+      ),
+    );
+  }
+
+  Widget _buildSearchResults(List<Medication> veggies) {
+    if (veggies.isEmpty) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Text(
+            'No veggies matching your search terms were found.',
+            style: Styles.headlineDescription,
+          ),
+        ),
+      );
+    }
+
+    return ListView.builder(
+      itemCount: veggies.length,
+      itemBuilder: (context, i) {
+        return Padding(
+          padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 24.0),
+          child: PrescriptionHeadline(veggies[i]),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final model = ScopedModel.of<AppState>(context, rebuildOnChange: true);
+
+    return CupertinoTabView(
+      builder: (context) {
+        return DecoratedBox(
+          decoration: BoxDecoration(
+            color: Styles.scaffoldBackground,
+          ),
+          child: SafeArea(
+            bottom: false,
+            child: Column(
+              children: [
+                _createSearchBox(),
+                Expanded(
+                  child: _buildSearchResults(model.searchVeggies(terms)),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}

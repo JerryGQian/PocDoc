@@ -5,7 +5,7 @@
 import 'dart:async';
 
 import 'package:scoped_model/scoped_model.dart';
-import 'package:veggieseasons/data/veggie.dart';
+import 'package:veggieseasons/data/medication.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// A model class that mirrors the options in [SettingsScreen] and stores data
@@ -20,25 +20,25 @@ class Preferences extends Model {
 
   int _desiredCalories = 2000;
 
-  Set<VeggieCategory> _preferredCategories = Set<VeggieCategory>();
+  Set<MedicationCategory> _preferredCategories = Set<MedicationCategory>();
 
   Future<int> get desiredCalories async {
     await _loading;
     return _desiredCalories;
   }
 
-  Future<Set<VeggieCategory>> get preferredCategories async {
+  Future<Set<MedicationCategory>> get preferredCategories async {
     await _loading;
     return Set.from(_preferredCategories);
   }
 
-  void addPreferredCategory(VeggieCategory category) async {
+  void addPreferredCategory(MedicationCategory category) async {
     _preferredCategories.add(category);
     await _saveToSharedPrefs();
     notifyListeners();
   }
 
-  void removePreferredCategory(VeggieCategory category) async {
+  void removePreferredCategory(MedicationCategory category) async {
     _preferredCategories.remove(category);
     await _saveToSharedPrefs();
     notifyListeners();
@@ -73,8 +73,8 @@ class Preferences extends Model {
     if (names != null && names.isNotEmpty) {
       for (final name in names.split(',')) {
         final index = int.tryParse(name) ?? -1;
-        if (VeggieCategory.values[index] != null) {
-          _preferredCategories.add(VeggieCategory.values[index]);
+        if (MedicationCategory.values[index] != null) {
+          _preferredCategories.add(MedicationCategory.values[index]);
         }
       }
     }

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:veggieseasons/data/app_state.dart';
-import 'package:veggieseasons/data/veggie.dart';
+import 'package:veggieseasons/data/medication.dart';
 import 'package:veggieseasons/styles.dart';
 
 /// Presents a series of trivia questions about a particular widget, and tracks
@@ -28,7 +28,7 @@ class _TriviaViewState extends State<TriviaView> {
   AppState appState;
 
   /// The veggie trivia about which to show.
-  Veggie veggie;
+  Medication veggie;
 
   /// Index of the current trivia question.
   int triviaIndex = 0;

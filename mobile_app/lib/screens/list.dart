@@ -8,26 +8,26 @@ import 'package:intl/intl.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:veggieseasons/data/app_state.dart';
 import 'package:veggieseasons/data/preferences.dart';
-import 'package:veggieseasons/data/veggie.dart';
+import 'package:veggieseasons/data/medication.dart';
 import 'package:veggieseasons/styles.dart';
-import 'package:veggieseasons/widgets/veggie_card.dart';
+import 'package:veggieseasons/widgets/prescription_card.dart';
 
 class ListScreen extends StatelessWidget {
   List<Widget> _generateVeggieRows(
-    List<Veggie> veggies,
+    List<Medication> veggies,
     Preferences prefs,
     { bool inSeason = true }
   ) {
     final cards = List<Widget>();
 
-    for (Veggie veggie in veggies) {
+    for (Medication veggie in veggies) {
       cards.add(Padding(
         padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 24.0),
-        child: FutureBuilder<Set<VeggieCategory>>(
+        child: FutureBuilder<Set<MedicationCategory>>(
             future: prefs.preferredCategories,
             builder: (context, snapshot) {
-              final data = snapshot.data ?? Set<VeggieCategory>();
-              return VeggieCard(veggie, inSeason, data.contains(veggie.category));
+              final data = snapshot.data ?? Set<MedicationCategory>();
+              return PrescriptionCard(veggie, inSeason, data.contains(veggie.category));
             }),
       ));
     }

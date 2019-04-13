@@ -3,37 +3,37 @@
 // found in the LICENSE file.
 
 import 'package:scoped_model/scoped_model.dart';
-import 'package:veggieseasons/data/veggie.dart';
-import 'package:veggieseasons/data/local_veggie_provider.dart';
+import 'package:veggieseasons/data/medication.dart';
+import 'package:veggieseasons/data/prescriptions_list.dart';
 
 class AppState extends Model {
-  List<Veggie> _veggies;
+  List<Medication> _veggies;
 
-  AppState() : _veggies = LocalVeggieProvider.veggies;
+  AppState() : _veggies = PrescriptionsList.medications;
 
-  List<Veggie> get allVeggies => List<Veggie>.from(_veggies);
+  List<Medication> get allVeggies => List<Medication>.from(_veggies);
 
-  Veggie getVeggie(int id) => _veggies.singleWhere((v) => v.id == id);
+  Medication getVeggie(int id) => _veggies.singleWhere((v) => v.id == id);
 
-  List<Veggie> get availableVeggies {
+  List<Medication> get availableVeggies {
     Season currentSeason = _getSeasonForDate(DateTime.now());
     return _veggies.where((v) => v.seasons.contains(currentSeason)).toList();
   }
 
-  List<Veggie> get unavailableVeggies {
+  List<Medication> get unavailableVeggies {
     Season currentSeason = _getSeasonForDate(DateTime.now());
     return _veggies.where((v) => !v.seasons.contains(currentSeason)).toList();
   }
 
-  List<Veggie> get favoriteVeggies =>
+  List<Medication> get favoriteVeggies =>
       _veggies.where((v) => v.isFavorite).toList();
 
-  List<Veggie> searchVeggies(String terms) => _veggies
+  List<Medication> searchVeggies(String terms) => _veggies
       .where((v) => v.name.toLowerCase().contains(terms.toLowerCase()))
       .toList();
 
   void setFavorite(int id, bool isFavorite) {
-    Veggie veggie = getVeggie(id);
+    Medication veggie = getVeggie(id);
     veggie.isFavorite = isFavorite;
     notifyListeners();
   }

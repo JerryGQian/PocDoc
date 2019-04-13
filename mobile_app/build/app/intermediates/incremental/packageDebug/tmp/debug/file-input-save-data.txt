@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Fri Apr 12 23:29:51 EDT 2019
+#Sat Apr 13 02:04:02 EDT 2019
 5.base=C\:\\Users\\Jerry\\Hackathons\\PocketMD\\mobile_app\\build\\app\\intermediates\\assets\\debug
 42.base=C\:\\Users\\Jerry\\Hackathons\\PocketMD\\mobile_app\\build\\app\\intermediates\\assets\\debug
 22.path=flutter_assets/assets/images/strawberry.jpg

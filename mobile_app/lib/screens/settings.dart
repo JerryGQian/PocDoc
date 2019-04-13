@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:veggieseasons/data/preferences.dart';
-import 'package:veggieseasons/data/veggie.dart';
+import 'package:veggieseasons/data/medication.dart';
 import 'package:veggieseasons/styles.dart';
 import 'package:veggieseasons/widgets/settings_group.dart';
 import 'package:veggieseasons/widgets/settings_item.dart';
@@ -24,12 +24,12 @@ class VeggieCategorySettingsScreen extends StatelessWidget {
         previousPageTitle: 'Settings',
       ),
       backgroundColor: Styles.scaffoldBackground,
-      child: FutureBuilder<Set<VeggieCategory>>(
+      child: FutureBuilder<Set<MedicationCategory>>(
         future: currentPrefs,
         builder: (context, snapshot) {
           final items = <SettingsItem>[];
 
-          for (final category in VeggieCategory.values) {
+          for (final category in MedicationCategory.values) {
             CupertinoSwitch toggle;
 
             // It's possible that category data hasn't loaded from shared prefs
@@ -54,7 +54,7 @@ class VeggieCategorySettingsScreen extends StatelessWidget {
             }
 
             items.add(SettingsItem(
-              label: veggieCategoryNames[category],
+              label: medicationCategoryNames[category],
               content: toggle,
             ));
           }

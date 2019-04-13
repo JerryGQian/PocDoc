@@ -6,10 +6,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:veggieseasons/data/app_state.dart';
-import 'package:veggieseasons/data/veggie.dart';
+import 'package:veggieseasons/data/medication.dart';
 import 'package:veggieseasons/styles.dart';
 import 'package:veggieseasons/widgets/search_bar.dart';
-import 'package:veggieseasons/widgets/veggie_headline.dart';
+import 'package:veggieseasons/widgets/prescription_headline.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -47,7 +47,7 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  Widget _buildSearchResults(List<Veggie> veggies) {
+  Widget _buildSearchResults(List<Medication> veggies) {
     if (veggies.isEmpty) {
       return Center(
         child: Padding(
@@ -65,7 +65,7 @@ class _SearchScreenState extends State<SearchScreen> {
       itemBuilder: (context, i) {
         return Padding(
           padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 24.0),
-          child: VeggieHeadline(veggies[i]),
+          child: PrescriptionHeadline(veggies[i]),
         );
       },
     );

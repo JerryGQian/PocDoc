@@ -7,6 +7,8 @@ import 'package:flutter/widgets.dart';
 import 'package:veggieseasons/screens/favorites.dart';
 import 'package:veggieseasons/screens/list.dart';
 import 'package:veggieseasons/screens/search.dart';
+import 'package:veggieseasons/screens/prescriptions.dart';
+import 'package:veggieseasons/screens/chat.dart';
 import 'package:veggieseasons/screens/settings.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -27,6 +29,14 @@ class HomeScreen extends StatelessWidget {
           title: Text('Search'),
         ),
         BottomNavigationBarItem(
+          icon: Icon(CupertinoIcons.pencil),
+          title: Text('Prescriptions'),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(CupertinoIcons.conversation_bubble),
+          title: Text('Chat'),
+        ),
+        BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.settings),
           title: Text('Settings'),
         ),
@@ -38,6 +48,10 @@ class HomeScreen extends StatelessWidget {
           return FavoritesScreen();
         } else if (index == 2) {
           return SearchScreen();
+        } else if (index == 3) {
+          return PrescriptionsScreen();
+        } else if (index == 4) {
+          return ChatScreen();
         } else {
           return SettingsScreen();
         }

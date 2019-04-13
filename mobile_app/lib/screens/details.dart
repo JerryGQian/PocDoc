@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:veggieseasons/data/app_state.dart';
 import 'package:veggieseasons/data/preferences.dart';
-import 'package:veggieseasons/data/veggie.dart';
+import 'package:veggieseasons/data/medication.dart';
 import 'package:veggieseasons/styles.dart';
 import 'package:veggieseasons/widgets/close_button.dart';
 import 'package:veggieseasons/widgets/trivia.dart';
@@ -15,7 +15,7 @@ import 'package:veggieseasons/widgets/trivia.dart';
 class ServingInfoChart extends StatelessWidget {
   const ServingInfoChart(this.veggie, this.prefs);
 
-  final Veggie veggie;
+  final Medication veggie;
 
   final Preferences prefs;
 
