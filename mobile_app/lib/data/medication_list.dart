@@ -15,7 +15,7 @@ class MedicationList {
       category: MedicationCategory.postStroke,
       shortDescription: 'Commonly used as a pain reliever for minor aches and pains and fevers.',
       accentColor: Color(0x40de8c66),
-      seasons: [Season.winter, Season.spring, Season.summer, Season.autumn],
+      categories: [MedicationCategory.antiClotting, MedicationCategory.cholesterol],
     ),
     Medication(
       id: 2,
@@ -25,7 +25,7 @@ class MedicationList {
       category: MedicationCategory.postStroke,
       shortDescription: 'The armadillo of vegetables.',
       accentColor: Color(0x408ea26d),
-      seasons: [Season.spring, Season.autumn],
+      categories: [MedicationCategory.antiClotting],
     ),
     Medication(
       id: 3,
@@ -35,7 +35,7 @@ class MedicationList {
       category: MedicationCategory.diabetes,
       shortDescription: 'It\'s been used a food and medicine for millenia.',
       accentColor: Color(0x408cb437),
-      seasons: [Season.spring],
+      categories: [MedicationCategory.postStroke],
     ),
     Medication(
       id: 4,
@@ -45,7 +45,7 @@ class MedicationList {
       category: MedicationCategory.bloodPressure,
       shortDescription: 'One of the oiliest, richest vegetables money can buy.',
       accentColor: Color(0x40b0ba59),
-      seasons: [Season.winter, Season.spring, Season.summer],
+      categories: [MedicationCategory.postStroke, MedicationCategory.antiClotting, MedicationCategory.atrialFibrilation],
     ),
     Medication(
       id: 5,
@@ -55,7 +55,7 @@ class MedicationList {
       category: MedicationCategory.antiClotting,
       shortDescription: 'Find them on backroads and fences in the Northwest.',
       accentColor: Color(0x409d5adb),
-      seasons: [Season.summer],
+      categories: [MedicationCategory.postStroke],
     ),
     Medication(
       id: 6,
@@ -65,7 +65,17 @@ class MedicationList {
       category: MedicationCategory.atrialFibrilation,
       shortDescription: 'A fruit so tasty there\'s a utensil just for it.',
       accentColor: Color(0x40f6bd56),
-      seasons: [Season.summer],
+      categories: [MedicationCategory.diabetes],
+    ),
+    Medication(
+      id: 7,
+      name: 'Statin',
+      medicalName: 'tbd',
+      imageAssetPath: 'assets/images/cantaloupe.jpg',
+      category: MedicationCategory.atrialFibrilation,
+      shortDescription: 'A fruit so tasty there\'s a utensil just for it.',
+      accentColor: Color(0x40f6bd56),
+      categories: [MedicationCategory.cholesterol],
     ),
 
   ];

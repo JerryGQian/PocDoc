@@ -14,17 +14,17 @@ class PrescriptionHeadline extends StatelessWidget {
 
   const PrescriptionHeadline(this.prescription, this.medication);
 
-  List<Widget> _buildSeasonDots(List<Season> seasons) {
+  List<Widget> _buildSeasonDots(List<MedicationCategory> medicationCategories) {
     List<Widget> widgets = <Widget>[];
 
-    for (Season season in seasons) {
+    for (MedicationCategory medicationCategory in medicationCategories) {
       widgets.add(SizedBox(width: 4.0));
       widgets.add(
         Container(
           height: 10.0,
           width: 10.0,
           decoration: BoxDecoration(
-            color: Styles.seasonColors[season],
+            color: Styles.seasonColors[medicationCategory],
             borderRadius: BorderRadius.circular(5.0),
           ),
         ),
@@ -65,7 +65,7 @@ class PrescriptionHeadline extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     Text(medication.name, style: Styles.headlineName),
-                  ]..addAll(_buildSeasonDots(medication.seasons)),
+                  ]..addAll(_buildSeasonDots(medication.categories)),
                 ),
                 Text(medication.shortDescription,
                     style: Styles.headlineDescription),

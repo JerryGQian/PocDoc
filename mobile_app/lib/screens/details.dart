@@ -24,21 +24,6 @@ class PrescriptionChart extends StatelessWidget {
   // Creates a [Text] widget to display a veggie's "percentage of your daily
   // value of this vitamin" data adjusted for the user's preferred calorie
   // target.
-  Widget _buildPrescriptionText(int standardPercentage, Future<int> targetCalories) {
-    return FutureBuilder(
-      future: targetCalories,
-      builder: (context, snapshot) {
-        final target = snapshot?.data ?? 2000;
-        final percent = standardPercentage * 2000 ~/ target;
-
-        return Text(
-          '$percent% DV',
-          textAlign: TextAlign.end,
-          style: Styles.detailsServingValueText,
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -169,14 +154,14 @@ class InfoView extends StatelessWidget {
 
     final seasonIcons = <Widget>[];
 
-    for (Season season in medication.seasons) {
+    for (MedicationCategory season in medication.categories) {
       seasonIcons.addAll([
         SizedBox(width: 12.0),
         Padding(
           padding: Styles.seasonIconPadding[season],
           child: Icon(
             Styles.seasonIconData[season],
-            semanticLabel: seasonNames[season],
+            semanticLabel: medicationCategoryNames[season],
             color: Styles.seasonColors[season],
           ),
         ),

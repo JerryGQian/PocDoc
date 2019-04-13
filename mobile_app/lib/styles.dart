@@ -184,27 +184,30 @@ abstract class Styles {
 
   static const Color searchIconColor = Color.fromRGBO(128, 128, 128, 1.0);
 
-  static const seasonColors = <Season, Color>{
-    Season.winter: Color(0xff336dcc),
-    Season.spring: Color(0xff2fa02b),
-    Season.summer: Color(0xff287213),
-    Season.autumn: Color(0xff724913),
+  static const seasonColors = <MedicationCategory, Color>{
+    MedicationCategory.antiClotting: Color(0xff336dcc),
+    MedicationCategory.atrialFibrilation: Color(0xff2fa02b),
+    MedicationCategory.cholesterol: Color(0xff287213),
+    MedicationCategory.diabetes: Color(0xff724913),
+    MedicationCategory.postStroke: Color(0xff724913),
   };
 
   // While handy, some of the Font Awesome icons sometimes bleed over their
   // allotted bounds. This padding is used to adjust for that.
   static const seasonIconPadding = {
-    Season.winter: const EdgeInsets.only(right: 0.0),
-    Season.spring: const EdgeInsets.only(right: 4.0),
-    Season.summer: const EdgeInsets.only(right: 6.0),
-    Season.autumn: const EdgeInsets.only(right: 0.0),
+    MedicationCategory.antiClotting: const EdgeInsets.only(right: 0.0),
+    MedicationCategory.atrialFibrilation: const EdgeInsets.only(right: 4.0),
+    MedicationCategory.cholesterol: const EdgeInsets.only(right: 6.0),
+    MedicationCategory.diabetes: const EdgeInsets.only(right: 0.0),
+    MedicationCategory.postStroke: const EdgeInsets.only(right: 0.0),
   };
 
   static const seasonIconData = {
-    Season.winter: FontAwesomeIcons.prescription,
-    Season.spring: FontAwesomeIcons.heartbeat,
-    Season.summer: FontAwesomeIcons.stethoscope,
-    Season.autumn: FontAwesomeIcons.medkit,
+    MedicationCategory.antiClotting: FontAwesomeIcons.tablets,
+    MedicationCategory.atrialFibrilation: FontAwesomeIcons.heartbeat,
+    MedicationCategory.cholesterol: FontAwesomeIcons.diagnoses,
+    MedicationCategory.diabetes: FontAwesomeIcons.syringe,
+    MedicationCategory.postStroke: FontAwesomeIcons.brain,
   };
 
   static const seasonBorder = Border(

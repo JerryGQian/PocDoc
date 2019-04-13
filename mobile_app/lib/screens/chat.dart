@@ -17,6 +17,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final List<ChatMessage> _messages = <ChatMessage>[]; // new
   final TextEditingController _textController = new TextEditingController();
 
+
   /*@override
   void initState() {
     super.initState();
@@ -24,6 +25,8 @@ class _ChatScreenState extends State<ChatScreen> {
   }*/
 
   void _handleSubmitted(String text) {
+    print("Yo man one ");
+    print(_messages.length);
     _textController.clear();
     ChatMessage message = ChatMessage(
       text: text,
@@ -34,6 +37,8 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Widget _buildTextComposer() {
+    print("Yo man");
+    print(_messages.length);
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Row(
@@ -57,6 +62,28 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Widget build(BuildContext context) {
+    print("Yo man 3");
+    print(_messages.length);
+    return CupertinoPageScaffold(
+      child: Column(
+        children: <Widget>[
+          Flexible(
+            child: ListView.builder(
+              padding: EdgeInsets.all(8.0),
+              reverse: true,
+              itemBuilder: (_, index) => _messages[index],
+              itemCount: _messages.length,
+            ),
+          ),
+          Container(
+            child: _buildTextComposer(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /*Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       child: Column(
         children: <Widget>[
@@ -75,9 +102,7 @@ class _ChatScreenState extends State<ChatScreen> {
         ],
       ),
     );
-  }
-
-
+  }*/
 
 
   /*@override

@@ -43,34 +43,34 @@ class AppState extends Model {
     notifyListeners();
   }
 
-  static Season _getSeasonForDate(DateTime date) {
+  static MedicationType _getSeasonForDate(DateTime date) {
     // Technically the start and end dates of seasons can vary by a day or so,
     // but this is close enough for produce.
     switch (date.month) {
       case 1:
-        return Season.winter;
+        return MedicationType.postStroke;
       case 2:
-        return Season.winter;
+        return MedicationType.postStroke;
       case 3:
-        return date.day < 21 ? Season.winter : Season.spring;
+        return date.day < 21 ? MedicationType.postStroke : MedicationType.postStroke;
       case 4:
-        return Season.spring;
+        return MedicationType.postStroke;
       case 5:
-        return Season.spring;
+        return MedicationType.postStroke;
       case 6:
-        return date.day < 21 ? Season.spring : Season.summer;
+        return date.day < 21 ? MedicationType.postStroke : MedicationType.postStroke;
       case 7:
-        return Season.summer;
+        return MedicationType.postStroke;
       case 8:
-        return Season.summer;
+        return MedicationType.postStroke;
       case 9:
-        return date.day < 22 ? Season.autumn : Season.winter;
+        return date.day < 22 ? MedicationType.postStroke : MedicationType.postStroke;
       case 10:
-        return Season.autumn;
+        return MedicationType.postStroke;
       case 11:
-        return Season.autumn;
+        return MedicationType.postStroke;
       case 12:
-        return date.day < 22 ? Season.autumn : Season.winter;
+        return date.day < 22 ? MedicationType.postStroke : MedicationType.postStroke;
       default:
         throw ArgumentError('Can\'t return a season for month #${date.month}.');
     }

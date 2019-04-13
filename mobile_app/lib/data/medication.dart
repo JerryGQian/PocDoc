@@ -14,11 +14,13 @@ enum MedicationCategory {
   postStroke,
 }
 
-enum Season {
-  winter,
-  spring,
-  summer,
-  autumn,
+enum MedicationType {
+  bloodPressure,
+  antiClotting,
+  atrialFibrilation,
+  cholesterol,
+  diabetes,
+  postStroke,
 }
 
 const Map<MedicationCategory, String> medicationCategoryNames = {
@@ -28,13 +30,6 @@ const Map<MedicationCategory, String> medicationCategoryNames = {
   MedicationCategory.cholesterol: 'Cholesterol',
   MedicationCategory.diabetes: 'Diabetes',
   MedicationCategory.postStroke: 'Post stroke',
-};
-
-const Map<Season, String> seasonNames = {
-  Season.winter: 'Winter',
-  Season.spring: 'Spring',
-  Season.summer: 'Summer',
-  Season.autumn: 'Autumn',
 };
 
 
@@ -48,7 +43,7 @@ class Medication {
     @required this.category,
     @required this.shortDescription,
     @required this.accentColor,
-    @required this.seasons,
+    @required this.categories,
     this.isFavorite = false,
   });
 
@@ -71,7 +66,7 @@ class Medication {
   final Color accentColor;
 
   /// Seasons during which a veggie is harvested.
-  final List<Season> seasons;
+  final List<MedicationCategory> categories;
 
   /// Whether or not the veggie has been saved to the user's garden (i.e. marked
   /// as a favorite).
