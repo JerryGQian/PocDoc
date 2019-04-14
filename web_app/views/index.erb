@@ -55,7 +55,11 @@
           <div class="col-md-6"><div style="margin: 25px;"><h1><%= current%></h1>
 <h2>Demographics</h2>
 <ul>
-    <li>Gender: Male</li>
+    <li>Gender: <% if current == Aish then%>
+              Female
+                <% else %>
+               Male
+                  <% end %></li>
     <li>Dates of Hospital Stay: 04/01/2019 - 04/14/2019</li>
     <li>Relevant Medical History
         <ul>
