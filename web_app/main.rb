@@ -219,3 +219,19 @@ get "/home" do
 			:text => "succ"
 		}
 end
+
+get "/retriever" do
+	erb :ret,
+		:layout => get_layout,
+		:locals => {
+			:messages => CTRL.get_messages(params[:u])
+		}
+end
+
+post "/retriever" do
+	erb :ret,
+		:layout => get_layout,
+		:locals => {
+			:messages => CTRL.get_messages(params[:u])
+		}
+end
