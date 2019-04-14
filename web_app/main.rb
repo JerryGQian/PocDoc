@@ -102,7 +102,7 @@ post "/webmessage" do
 end
 
 post "/appmessage" do
-	CTRL.publish_twit(
+	CTRL.create_message(
 		params["user"],
 		session[:session],
 		params["content"],
@@ -133,11 +133,11 @@ post "/login" do
 end
 
 get "/register" do
-	if logged_in? then
-		redirect "/"
-	else
+	#if logged_in? then
+	#	redirect "/"
+	#else
 		erb :register, :layout => get_layout
-	end
+	#end
 end
 
 post "/register" do
@@ -149,7 +149,7 @@ post "/register" do
 		params["confirm"])
 
 	if succ then
-		redirect "/login"
+		redirect "/register"
 	else
 		redirect "/register?failed=true"
 	end
