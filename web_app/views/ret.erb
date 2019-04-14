@@ -1,0 +1,10 @@
+<% messages.each do |twit| %>
+{
+<% if twit[:mode] == "doc" then%>
+true
+<% else %>
+false
+<% end %>
+, <%= twit[:body] %>, <%= twit[:date] %>}
+
+<% end %>
