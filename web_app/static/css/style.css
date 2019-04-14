@@ -208,6 +208,7 @@ img {
 
 .type_msg {
     border-top: 1px solid #c4c4c4;
+    border-left: 1px solid #c4c4c4;
     position: relative;
 }
 
@@ -230,7 +231,7 @@ img {
 }
 
 .msg_history {
-    height: 100vh;
+    height: 93vh;
     overflow-y: auto;
     border-left: 1px solid #c4c4c4;
 }
