@@ -1,10 +1,10 @@
 <% messages.each do |twit| %>
-{
+{patient=
 <% if twit[:mode] == "doc" then%>
-true
+"false"
 <% else %>
-false
+"true"
 <% end %>
-, <%= twit[:body] %>, <%= twit[:date] %>}
+, body="<%= twit[:body] %>", date="<%= twit[:date] %>}"
 
 <% end %>
