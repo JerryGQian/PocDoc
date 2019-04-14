@@ -222,6 +222,26 @@ module User
 		@db.execute query
 		true
 	end
+
+	def get_users
+		
+		users = []
+
+		query = %{
+		SELECT User, Description, Avatar
+		FROM Users
+		} 		
+
+		@db.execute(query) do |eps|
+			users << {
+				:pat => eps[0],
+				:description => eps[1],
+				:avatar => eps[2]
+			}
+		end
+		users
+	end
+
 end
 
 #
@@ -255,6 +275,25 @@ module Epsilons
 		@db.execute query
 		true
 	end
+	# publish_twit : String Integer String Integer -> Boolean
+	# Publish twit from user with given content. Returns
+	# success status.
+	def create_message(user, session, content, token, mode)
+		if token != @tokens[user] or  session != @sessions[user] then
+			return false
+		end	
+	
+		content = sanitize content
+	
+		timestamp = Time.now.to_i
+		query = %{
+		INSERT INTO Messages (Patient, Usermode, Body, Date)
+		VALUES ('#{user}', '#{mode}', '#{content}', #{timestamp})
+		}
+		@db.execute query
+		true
+	end
+
 
 	def get_messages(user)
 		user = sanitize user
@@ -273,8 +312,6 @@ module Epsilons
 			WHERE Patient = '#{user}'
 			} 
 		end
-		print(query)
-
 
 		@db.execute(query) do |eps|
 			date_str = Time.at(eps[3]).strftime(DATE_FMT)

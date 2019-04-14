@@ -52,10 +52,21 @@ end
 
 get "/" do
 	if logged_in? then
+
+		if params[:p] then
+			locals = CTRL.get_messages(params[:p])
+		else
+			locals = CTRL.all_messages
+		end
+
+			all_users = CTRL.get_users
+
 		erb :index,
 			:layout => get_layout,
 			:locals => {
-				:twits => CTRL.all_messages,
+				:twits => locals,
+				:paitients => all_users,
+				:current => params[:p],
 				:token => CTRL.assign_token(session[:user])
 			}
 	else
@@ -73,9 +84,31 @@ post "/" do
 	redirect "/"
 end
 
+post "/webmessage" do
+	CTRL.create_message(
+		session[:user],
+		session[:session],
+		params["content"],
+		params["token"].to_i,
+		"doc")
+
+	redirect "/"
+end
+
+post "/appmessage" do
+	CTRL.publish_twit(
+		session[:user],
+		session[:session],
+		params["content"],
+		params["token"].to_i,
+		"pat")
+
+	redirect "/"
+end
+
 get "/login" do
 	if logged_in? then
-		redirect "/"
+		redirect "/?p=Andrew"
 	else
 		erb :login, :layout => get_layout
 	end
@@ -87,7 +120,7 @@ post "/login" do
 	if sess then
 		session[:user] = params["user"]
 		session[:session] = sess
-		redirect "/"
+		redirect "/?p=Andrew"
 	else
 		redirect "/login"
 	end
