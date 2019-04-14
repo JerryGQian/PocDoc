@@ -92,6 +92,7 @@
                       <div class="input_msg_write">
                       <form id="sendo" method="post" action="/webmessage" target="">
                        <input type="hidden" value="<%= token %>" name="token" id="hido">
+                       <input type="hidden" value="<%= current %>" name="user" id="uji">
                        <fieldset>
                         <input type="text" class="write_msg" placeholder="Type a message" name="content" id="koji"/>
                         <button class="msg_send_btn" type="submit" value="Submit"><i class="fa fa-paper-plane-o"
