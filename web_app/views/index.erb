@@ -23,51 +23,40 @@
             <div class="recent_heading">
               <h4>Patients</h4>
             </div>
-            <div class="srch_bar">
-              <div class="stylish-input-group">
-                <input type="text" class="search-bar" placeholder="Search">
-                <span class="input-group-addon">
-                  <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-                </span> </div>
-            </div>
           </div>
           <div class="inbox_chat">
-
             <section>
               <% paitients.each do |user| %>
-                <% if current && current = paitients[:pat]%>
-                  <div class="chat_list active_chat">
+              <% if current && current == user[:pat]%>
+              <div class="chat_list active_chat">
                 <% else %>
-                  <div class="chat_list">
-                <% end %>
+               <a style="display:block" href="/?p=<%= user[:pat]%>">
+                <div class="chat_list">
+                  <% end %>
 
-                <div class="chat_people">
-                  <div class="chat_img"> <img src="https://avatars3.githubusercontent.com/u/21362821?v=4%3Ftype"
-                    alt="sunil"> </div>
-                    <div class="chat_ib">
-                      <h5>
-                        <% "#{paitients}" %>
-                      </h5>
-                      <p>Sah dude <% "#{user}" %></p>
+                  <div class="chat_people">
+                    <div class="chat_img"> <img src="/avatars/<%= user[:avatar]%>"
+                      alt="<%= user[:pat]%> icon"> </div>
+                      <div class="chat_ib">
+                        <h5>
+                          <%= user[:pat] %>
+                        </h5>
+                        <p><%= user[:description] %></p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              <% end %>
-            </section>
+                  </a>
+                  <% end %>
+                </section>
             <!--End pane-->
           </div>
         </div>
         <div class="row container2">
-          <div class="col-sm-6"></div>
-          <div class="col-sm-6">
-            <div>
-              <div class="row row-first">
-                <h1>HELLLLOOOOOOO</h1>
-              </div>
-              <div class="row">
+          <div class="col-md-6"></div>
+          <div class="col-md-6">
                 <div class="mesgs">
                   <div class="msg_history" id="history">
-                  <section>
+                  <section id="scroll">
                   <% twits.each do |twit| %>
                     <% if twit[:mode] == "doc" then%>
                       <div class="outgoing_msg">
@@ -91,31 +80,21 @@
                     <% end %>
                   <% end %>
                   </section>
-                  <section>
-                    <form id="sendo" method="post" action="/webmessage" target="_blank">
-                      <input type="hidden" value="<%= token %>" name="token">
-                        <fieldset>
-                          <div>
-                            <input type="text" class="write_msg" placeholder="Compose a message" name="content">
-                          </div>
-                          <div>
-                            <input type="submit" value="Submit">
-                          </div>
-                        </fieldset>
-                    </form>
-                  </section>
-
-                    <div class="type_msg">
+                  </div>
+                   <div class="type_msg">
                       <div class="input_msg_write">
-                        <input type="text" class="write_msg" placeholder="Type a message" />
-                        <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o"
+                      <form id="sendo" method="post" action="/webmessage" target="">
+                       <input type="hidden" value="<%= token %>" name="token" id="hido">
+                       <input type="hidden" value="<%= current %>" name="user" id="uji">
+                       <fieldset>
+                        <input type="text" class="write_msg" placeholder="Type a message" name="content" id="koji"/>
+                        <button class="msg_send_btn" type="submit" value="Submit"><i class="fa fa-paper-plane-o"
                             aria-hidden="true"></i></button>
+                            </fieldset>
+                      </form>
                       </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

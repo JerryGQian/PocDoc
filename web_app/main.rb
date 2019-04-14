@@ -5,9 +5,9 @@ require "./controller"
 # Constants
 #
 
-PORT_LOWER = 1024
+PORT_LOWER = 1
 PORT_RANGE = 48128
-PORT_DEFAULT = 8080
+PORT_DEFAULT = 80
 CTRL = Controller.new
 
 #
@@ -36,9 +36,12 @@ enable :sessions
 
 set :public_folder, File.dirname(__FILE__) + "/static"
 
+
 configure do
 	port = PORT_DEFAULT
 	set :port, port
+	set :environment, :production
+	set :bind, '0.0.0.0'
 end
 
 not_found do
@@ -85,19 +88,22 @@ post "/" do
 end
 
 post "/webmessage" do
+
+	print("message #{params["content"]} recieved\n")
+
 	CTRL.create_message(
-		session[:user],
+		params["user"],
 		session[:session],
 		params["content"],
 		params["token"].to_i,
 		"doc")
 
-	redirect "/"
+	redirect "/?p=#{params["user"]}"
 end
 
 post "/appmessage" do
-	CTRL.publish_twit(
-		session[:user],
+	CTRL.create_message(
+		params["user"],
 		session[:session],
 		params["content"],
 		params["token"].to_i,
@@ -120,18 +126,18 @@ post "/login" do
 	if sess then
 		session[:user] = params["user"]
 		session[:session] = sess
-		redirect "/?p=Andrew"
+		redirect "/?p=#{params["user"]}"
 	else
 		redirect "/login"
 	end
 end
 
 get "/register" do
-	if logged_in? then
-		redirect "/"
-	else
+	#if logged_in? then
+	#	redirect "/"
+	#else
 		erb :register, :layout => get_layout
-	end
+	#end
 end
 
 post "/register" do
@@ -143,7 +149,7 @@ post "/register" do
 		params["confirm"])
 
 	if succ then
-		redirect "/login"
+		redirect "/register"
 	else
 		redirect "/register?failed=true"
 	end
