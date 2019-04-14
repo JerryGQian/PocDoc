@@ -59,7 +59,7 @@ class PrescriptionHeadline extends StatelessWidget {
                   ),
                   border: Border.all(
                     color: medication.accentColor,
-                    width: 8.0,
+                    width: 4.0,
                   ),
                 ),
                 child: Align(

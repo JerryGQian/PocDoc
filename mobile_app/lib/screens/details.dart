@@ -176,18 +176,7 @@ class InfoView extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              FutureBuilder(
-                future: prefs.preferredCategories,
-                builder: (context, snapshot) {
-                  return Text(
-                    medication.categoryName.toUpperCase(),
-                    style: (snapshot.hasData &&
-                            snapshot.data.contains(medication.category))
-                        ? Styles.detailsPreferredCategoryText
-                        : Styles.detailsCategoryText,
-                  );
-                },
-              ),
+
               Spacer(),
             ]..addAll(seasonIcons),
           ),
@@ -243,20 +232,18 @@ class _DetailsScreenState extends State<DetailsScreen> {
   Widget _buildHeader(BuildContext context, AppState model) {
     print("Widget id: ");
     print(widget.id);
-    final veggie = model.getMedication(model.getPrescription(widget.id));
+    final Medication medication = model.getMedication(model.getPrescription(widget.id));
 
     return SizedBox(
       height: 150.0,
       child: Stack(
         children: [
           Positioned(
-            right: 0.0,
-            left: 0.0,
-            child: Image.asset(
-              veggie.imageAssetPath,
-              fit: BoxFit.cover,
-              semanticLabel: 'A background image of ${veggie.name}',
-            ),
+            child: Container(
+              decoration: BoxDecoration(
+                color: medication.accentColor,
+              ),
+            )
           ),
           Positioned(
             top: 16.0,
