@@ -7,7 +7,7 @@ require "./controller"
 
 PORT_LOWER = 1024
 PORT_RANGE = 48128
-PORT_DEFAULT = 8080
+PORT_DEFAULT = 9494
 CTRL = Controller.new
 
 #
