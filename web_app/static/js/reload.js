@@ -1,6 +1,15 @@
 $(document).ready(function () {
   // Listen to submit event on the <form> itself!
-	console.log("Ready!");
+  console.log("Ready!");
+  
+  var element = document.getElementById(".msg_history");
+  element.scrollTop = element.scrollHeight;
+
+  var element = document.getElementById(".mesgs");
+  element.scrollTop = element.scrollHeight;
+
+  var element = document.getElementById("#scroll");
+  element.scrollTop = element.scrollHeight
 
   $('#sendo').submit(function (e) {
 

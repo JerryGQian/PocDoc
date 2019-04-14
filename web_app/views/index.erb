@@ -61,7 +61,7 @@
           <div class="col-md-6">
                 <div class="mesgs">
                   <div class="msg_history" id="history">
-                  <section>
+                  <section id="scroll">
                   <% twits.each do |twit| %>
                     <% if twit[:mode] == "doc" then%>
                       <div class="outgoing_msg">
@@ -85,25 +85,16 @@
                     <% end %>
                   <% end %>
                   </section>
-                  <section>
-                    <form id="sendo" method="post" action="/webmessage" target="_blank">
-                      <input type="hidden" value="<%= token %>" name="token" id="hido">
-                        <fieldset>
-                          <div>
-                            <input type="text" class="write_msg" placeholder="Compose a message" name="content" id="koji">
-                          </div>
-                          <div>
-                            <input type="submit" value="Submit">
-                          </div>
-                        </fieldset>
-                    </form>
-                  </section>
-
                     <div class="type_msg">
                       <div class="input_msg_write">
-                        <input type="text" class="write_msg" placeholder="Type a message" />
-                        <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o"
+                      <form id="sendo" method="post" action="/webmessage" target="">
+                       <input type="hidden" value="<%= token %>" name="token" id="hido">
+                       <fieldset>
+                        <input type="text" class="write_msg" placeholder="Type a message" name="content" id="koji"/>
+                        <button class="msg_send_btn" type="submit" value="Submit"><i class="fa fa-paper-plane-o"
                             aria-hidden="true"></i></button>
+                            </fieldset>
+                      </form>
                       </div>
                     </div>
                   </div>
