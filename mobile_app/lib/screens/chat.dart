@@ -35,10 +35,17 @@ class _ChatScreenState extends State<ChatScreen> {
     _textController.clear();
     if (text.length > 0) {
       ChatMessage message = ChatMessage(true, model.name, text);
+      _newMessagePost(model.name, text);
       setState(() {
         _messages.insert(0, message);
       });
     }
+  }
+  Future<void> _newMessagePost(String name, String text) async {
+    var url = '34.73.57.190';
+    var response = await http.post(url, body: {'patient': true, 'name': name, 'message': text});
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
   }
   void _buildChatText(bool patient, String name, String text) {
     _textController.clear();

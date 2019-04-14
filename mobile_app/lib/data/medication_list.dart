@@ -45,7 +45,7 @@ class MedicationList {
       category: MedicationCategory.bloodPressure,
       shortDescription: 'One of the oiliest, richest vegetables money can buy.',
       accentColor: Color(0x40b0ba59),
-      categories: [MedicationCategory.postStroke, MedicationCategory.antiClotting, MedicationCategory.atrialFibrilation],
+      categories: [MedicationCategory.postStroke, MedicationCategory.antiClotting, MedicationCategory.atrialFibrilation, MedicationCategory.diabetes],
     ),
     Medication(
       id: 5,
@@ -69,6 +69,16 @@ class MedicationList {
     ),
     Medication(
       id: 7,
+      name: 'Statin',
+      medicalName: 'tbd',
+      imageAssetPath: 'assets/images/cantaloupe.jpg',
+      category: MedicationCategory.atrialFibrilation,
+      shortDescription: 'A fruit so tasty there\'s a utensil just for it.',
+      accentColor: Color(0x40f6bd56),
+      categories: [MedicationCategory.cholesterol],
+    ),
+    Medication(
+      id: 8,
       name: 'Statin',
       medicalName: 'tbd',
       imageAssetPath: 'assets/images/cantaloupe.jpg',

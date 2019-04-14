@@ -214,7 +214,6 @@ class InfoView extends StatelessWidget {
               ]
           ),
 
-
           SizedBox(height: 8.0),
           Text(
             medication.shortDescription,
@@ -222,19 +221,6 @@ class InfoView extends StatelessWidget {
           ),
           PrescriptionChart(prescription, medication, prefs),
           SizedBox(height: 24.0),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CupertinoSwitch(
-                value: medication.isFavorite,
-                onChanged: (value) {
-                  appState.setFavorite(id, value);
-                },
-              ),
-              SizedBox(width: 8.0),
-              Text('Save to Favorites'),
-            ],
-          ),
         ],
       ),
     );
@@ -302,7 +288,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 CupertinoSegmentedControl(
                   children: {
                     0: Text('Prescription & Info'),
-                    1: Text('Trivia'),
+                    1: Text(''),
                   },
                   groupValue: _selectedViewIndex,
                   onValueChanged: (value) {
