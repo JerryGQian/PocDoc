@@ -43,7 +43,7 @@ class _ChatScreenState extends State<ChatScreen> {
   }
   Future<void> _newMessagePost(String name, String text) async {
     var url = '34.73.57.190';
-    var response = await http.post(url, body: {'patient': true, 'name': name, 'message': text});
+    var response = await http.post(url, body: {'name': name, 'message': text});
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
   }
