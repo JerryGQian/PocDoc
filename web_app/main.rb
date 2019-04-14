@@ -5,9 +5,9 @@ require "./controller"
 # Constants
 #
 
-PORT_LOWER = 1024
+PORT_LOWER = 1
 PORT_RANGE = 48128
-PORT_DEFAULT = 9494
+PORT_DEFAULT = 80
 CTRL = Controller.new
 
 #
@@ -34,12 +34,14 @@ end
 
 enable :sessions
 
-set :bind, '0.0.0.0'
 set :public_folder, File.dirname(__FILE__) + "/static"
+
 
 configure do
 	port = PORT_DEFAULT
 	set :port, port
+	set :environment, :production
+	set :bind, '0.0.0.0'
 end
 
 not_found do
