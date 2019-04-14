@@ -9,6 +9,27 @@ body {
     padding: 0;
 }
 
+.container2 {
+    width: 81%;
+    float: right;
+    height: 100vh;
+}
+
+.container-fluid {
+    height: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.row-first {
+    height: 50vh;
+    overflow: hidden;
+}
+
+.row {
+    border: 1px solid #c4c4c4;
+}
+
 img {
     max-width: 100%;
 }
@@ -43,7 +64,7 @@ img {
     display: inline-block;
     text-align: right;
     float: right;
-    width: 80%;
+    width: 60%;
     padding: 0;
 }
 
@@ -120,7 +141,7 @@ img {
 }
 
 .inbox_chat {
-    height: 100%;
+    height: 96.5%;
     overflow-y: scroll;
 }
 
@@ -163,8 +184,8 @@ img {
 
 .mesgs {
     float: left;
-    padding: 30px 15px 0 25px;
-    width: 60%;
+    width: 98%;
+    padding: 0 0 25px 0;
 }
 
 .sent_msg p {
@@ -177,9 +198,15 @@ img {
     width: 100%;
 }
 
+.incoming_msg {
+    overflow: hidden;
+    padding: 5px 25px;
+}
+
 .outgoing_msg {
     overflow: hidden;
-    margin: 26px 0 26px;
+    margin: 20px 0 20px;
+    padding: 5px 25px;
 }
 
 .sent_msg {
@@ -220,6 +247,6 @@ img {
 }
 
 .msg_history {
-    height: 90vh;
+    height: 50vh;
     overflow-y: auto;
 }
