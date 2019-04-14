@@ -12,7 +12,7 @@ Future<void> _loginPost(BuildContext context, String username, String password) 
   print('Response body: ${response.body}');
 
   var sessionID = int.tryParse(response.body);
-
+  print(sessionID);
   if (sessionID != null && sessionID >= 0) {
     Navigator.push(context, MaterialPageRoute(
         builder: (context) => HomeScreen()
@@ -41,16 +41,16 @@ class LoginScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(top: 100.0, bottom: 80.0),
-                  child: new Text(
-                    "pocdoc",
-                    style: new TextStyle(
-                        fontFamily: 'Harabara',
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 60.0),
+                  padding: const EdgeInsets.only(top: 100.0, bottom: 50.0),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                     'assets/images/pocdoc_logo_med.png',
+                      width: .7*MediaQuery.of(context).size.width,
+                      height: .2*MediaQuery.of(context).size.height,
+                    ),
                   ),
-                )
+                ),
               ],
             ),
             Padding(
@@ -58,7 +58,7 @@ class LoginScreen extends StatelessWidget {
               const EdgeInsets.symmetric(horizontal: 80.0, vertical: 0.0),
               child: new CupertinoTextField(
                 controller: usernameController,
-                onChanged: usernameController.clear(),
+                //onChanged: usernameController.clear(),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: new BorderRadius.circular(9.0),
