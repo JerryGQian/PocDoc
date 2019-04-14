@@ -59,6 +59,12 @@ class Preferences extends Model {
     notifyListeners();
   }
 
+  void setName(String name) async {
+    _name = name;
+    await _saveToSharedPrefs();
+    notifyListeners();
+  }
+
   void setEmail(String addr) async {
     _email = addr;
     await _saveToSharedPrefs();

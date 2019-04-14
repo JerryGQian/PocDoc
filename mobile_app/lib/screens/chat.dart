@@ -19,6 +19,22 @@ class ChatScreen extends StatefulWidget {
   _ChatScreenState createState() => _ChatScreenState();
 }
 
+Future<List<Tuple3<bool,String,String>>> getData(Preferences model, String url) async {
+  List<Tuple3<bool,String,String>> tlist = [];
+  var response = await http.get(url + "/retriever?u=" + model.name);
+  if (response.statusCode == 200) {
+    var jsonResponse = convert.jsonDecode(response.body);
+    //print(jsonResponse);
+    for (Map<String,dynamic> map in jsonResponse) {
+      //print(map['open']);
+      tlist.add(Tuple3<bool,String,String>(true, map['volume'].toString(), map['open'].toString()));
+    }
+  } else {
+    print("Request failed with status.");
+  }
+  return tlist;
+}
+
 class _ChatScreenState extends State<ChatScreen> {
   final List<ChatMessage> _messages = <ChatMessage>[]; // new
   TextEditingController _textController = new TextEditingController();
@@ -42,13 +58,12 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
   Future<void> _newMessagePost(String name, String text) async {
-    var url = '34.73.57.190';
-    var response = await http.post(url, body: {'name': name, 'message': text});
+    var url = 'http://35.196.65.157/appmessage';
+    var response = await http.post(url, body: {'user': name, 'content': text, 'token': "2"});
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
   }
   void _buildChatText(bool patient, String name, String text) {
-    _textController.clear();
     if (text.length > 0) {
       ChatMessage message = ChatMessage(patient, name, text);
       setState(() {
@@ -81,25 +96,12 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
 
-  Future<List<Tuple3<bool,String,String>>> getData(String url) async {
-    List<Tuple3<bool,String,String>> tlist = [Tuple3<bool,String,String>(false,"Dr. Doe", "Hello there patient!")];
-    var response = await http.get(url);
-    if (response.statusCode == 200) {
-      var jsonResponse = convert.jsonDecode(response.body);
-      //print(jsonResponse);
-      for (Map<String,dynamic> map in jsonResponse) {
-        //print(map['open']);
-        tlist.add(Tuple3<bool,String,String>(true, map['volume'].toString(), map['open'].toString()));
-      }
-    } else {
-      print("Request failed with status.");
-    }
-    return tlist;
-  }
+
 
 
   Future<void> buildWait(Future<List<Tuple3<bool,String,String>>> ftlist) async {
     List<Tuple3<bool,String,String>> tlist = await ftlist;
+    _messages.clear();
     if (tlist != null) {
       for (Tuple3<bool,String,String> tup in tlist) {
         _buildChatText(tup.item1, tup.item2, tup.item3);
@@ -108,9 +110,12 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Widget build(BuildContext context) {
-    final String url = "https://api.iextrading.com/1.0/stock/aapl/chart";
-    buildWait(getData(url));
-
+    print("##############################");
+    final model = ScopedModel.of<Preferences>(context, rebuildOnChange: true);
+    final String url = "http://35.196.65.157";
+    if (_textController.text.length == 0) {
+      buildWait(getData(model, url));
+    }
     return CupertinoPageScaffold(
       child: Column(
         children: <Widget>[

@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:pocketmd/data/preferences.dart';
+import 'package:scoped_model/scoped_model.dart';
 import 'package:http/http.dart' as http;
 import 'home.dart';
 
 
-Future<void> _loginPost(BuildContext context, String username, String password) async {
-  var url = '34.73.57.190';
+Future<void> _loginPost(BuildContext context, Preferences model, String username, String password) async {
+  /*var url = 'http://35.196.65.157/login';
   var response = await http.post(url, body: {'username': username, 'password': password});
   print('Response status: ${response.statusCode}');
   print('Response body: ${response.body}');
 
   var sessionID = int.tryParse(response.body);
   print(sessionID);
-  if (sessionID != null && sessionID >= 0) {
-    Navigator.push(context, MaterialPageRoute(
-        builder: (context) => HomeScreen()
-    ));
-  }
+  */
+  print(username);
+  model.setName(username);
+
+  Navigator.push(context, MaterialPageRoute(
+      builder: (context) => HomeScreen()
+  ));
+
 }
 
 class LoginScreen extends StatelessWidget {
@@ -26,6 +31,9 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("Hello there!");
+    final model = ScopedModel.of<Preferences>(context, rebuildOnChange: true);
+
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
       statusBarColor: Colors.orange, //or set color with: Color(0xFF0000FF)
@@ -97,7 +105,7 @@ class LoginScreen extends StatelessWidget {
                         horizontal: 80.0, vertical: 10.0),
                     child: GestureDetector(
                       onTap: () {
-                        _loginPost(context, usernameController.text, passwordController.text);
+                        _loginPost(context, model, usernameController.text, passwordController.text);
 
                       },
                       child: new Container(

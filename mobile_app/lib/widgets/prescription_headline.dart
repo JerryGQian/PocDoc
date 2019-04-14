@@ -53,10 +53,7 @@ class PrescriptionHeadline extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   color: medication.accentColor,
-                  image: DecorationImage(
-                    image: ExactAssetImage('images/flowers.jpeg'),
-                    fit: BoxFit.cover,
-                  ),
+
                   border: Border.all(
                     color: medication.accentColor,
                     width: 4.0,
