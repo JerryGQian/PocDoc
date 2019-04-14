@@ -92,13 +92,13 @@ post "/webmessage" do
 	print("message #{params["content"]} recieved\n")
 
 	CTRL.create_message(
-		session[:user],
+		params["user"],
 		session[:session],
 		params["content"],
 		params["token"].to_i,
 		"doc")
 
-	redirect "/"
+	redirect "/?p=#{params["user"]}"
 end
 
 post "/appmessage" do
@@ -126,7 +126,7 @@ post "/login" do
 	if sess then
 		session[:user] = params["user"]
 		session[:session] = sess
-		redirect "/?p=Andrew"
+		redirect "/?p=#{params["user"]}"
 	else
 		redirect "/login"
 	end

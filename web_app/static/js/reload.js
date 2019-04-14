@@ -17,12 +17,11 @@ $(document).ready(function () {
 
     var hidden = $("#hido").val();
     var text = $("#koji").val();
-
-    console.log(hidden);
-    console.log(text);
+    var usrr = $("#uji").val();
 
     $.post("/webmessage", {
       token: hidden,
+      user: usrr,
       content: text
     }).complete(function() {
        console.log("Success");
