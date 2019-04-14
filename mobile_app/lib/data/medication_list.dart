@@ -13,7 +13,7 @@ class MedicationList {
       medicalName: 'acetylsalicylic acid',
       imageAssetPath: 'assets/images/apple.jpg',
       category: MedicationCategory.postStroke,
-      shortDescription: 'Commonly used as a pain reliever for minor aches and pains and fevers.',
+      shortDescription: 'Prevents blood clots from forming.',
       accentColor: Color(0x40de8c66),
       categories: [MedicationCategory.antiClotting, MedicationCategory.cholesterol],
     ),
