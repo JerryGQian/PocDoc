@@ -59,6 +59,9 @@ flutter:
     - assets/images/orange_bell_pepper.jpg
 
   fonts:
+    - family: Harabara
+      fonts:
+        - asset: assets/fonts/Harabara.otf
     - family: NotoSans
       fonts:
         - asset: assets/fonts/NotoSans-Regular.ttf

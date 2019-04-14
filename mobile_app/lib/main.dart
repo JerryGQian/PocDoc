@@ -8,6 +8,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:pocketmd/data/app_state.dart';
 import 'package:pocketmd/data/preferences.dart';
 import 'package:pocketmd/screens/home.dart';
+import 'package:pocketmd/screens/login.dart';
 import 'package:pocketmd/styles.dart';
 
 void main() {
@@ -24,7 +25,7 @@ void main() {
         child: CupertinoApp(
           debugShowCheckedModeBanner: false,
           color: Styles.appBackground,
-          home: HomeScreen(),
+          home: LoginScreen(),
         ),
       ),
     ),
