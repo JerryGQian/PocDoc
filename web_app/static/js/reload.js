@@ -6,18 +6,20 @@ $(document).ready(function () {
 
     e.preventDefault();
 
-    var hidden = $("#hidden").val();
-    var text = $("#text").val();
+    var hidden = $("#hido").val();
+    var text = $("#koji").val();
 
-    $("#sendo").trigger("reset");
+    console.log(hidden);
+    console.log(text);
 
     $.post("/webmessage", {
-      hideden: hidden,
-      text: text
+      token: hidden,
+      content: text
     }).complete(function() {
        console.log("Success");
     });
 
+    $("#sendo").trigger("reset");
     $('#history').load(document.URL +  ' #history');
   });
 });

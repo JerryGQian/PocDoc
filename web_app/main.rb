@@ -85,6 +85,9 @@ post "/" do
 end
 
 post "/webmessage" do
+
+	print("message #{params["content"]} recieved\n")
+
 	CTRL.create_message(
 		session[:user],
 		session[:session],

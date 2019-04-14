@@ -32,28 +32,27 @@
             </div>
           </div>
           <div class="inbox_chat">
-
             <section>
               <% paitients.each do |user| %>
-                <% if current && current = paitients[:pat]%>
-                  <div class="chat_list active_chat">
+              <% if current && current == user[:pat]%>
+              <div class="chat_list active_chat">
                 <% else %>
-                  <div class="chat_list">
-                <% end %>
+                <div class="chat_list">
+                  <% end %>
 
-                <div class="chat_people">
-                  <div class="chat_img"> <img src="https://avatars3.githubusercontent.com/u/21362821?v=4%3Ftype"
-                    alt="sunil"> </div>
-                    <div class="chat_ib">
-                      <h5>
-                        <% "#{paitients}" %>
-                      </h5>
-                      <p>Sah dude <% "#{user}" %></p>
+                  <div class="chat_people">
+                    <div class="chat_img"> <img src="https://avatars3.githubusercontent.com/u/21362821?v=4%3Ftype"
+                      alt="sunil"> </div>
+                      <div class="chat_ib">
+                        <h5>
+                          <%= user[:pat] %>
+                        </h5>
+                        <p><%= user[:description] %></p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              <% end %>
-            </section>
+                  <% end %>
+                </section>
             <!--End pane-->
           </div>
         </div>
@@ -93,10 +92,10 @@
                   </section>
                   <section>
                     <form id="sendo" method="post" action="/webmessage" target="_blank">
-                      <input type="hidden" value="<%= token %>" name="token">
+                      <input type="hidden" value="<%= token %>" name="token" id="hido">
                         <fieldset>
                           <div>
-                            <input type="text" class="write_msg" placeholder="Compose a message" name="content">
+                            <input type="text" class="write_msg" placeholder="Compose a message" name="content" id="koji">
                           </div>
                           <div>
                             <input type="submit" value="Submit">
