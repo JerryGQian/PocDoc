@@ -7,7 +7,8 @@ import 'home.dart';
 
 
 class LoginScreen extends StatelessWidget {
-
+  TextEditingController usernameController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
 
@@ -15,6 +16,7 @@ class LoginScreen extends StatelessWidget {
       statusBarColor: Colors.orange, //or set color with: Color(0xFF0000FF)
     ));
     return new CupertinoPageScaffold(
+      backgroundColor: Color(0xfff7faff),
       child: Container(
         width: double.infinity,
         child: new Column(
@@ -40,7 +42,14 @@ class LoginScreen extends StatelessWidget {
               padding:
               const EdgeInsets.symmetric(horizontal: 80.0, vertical: 0.0),
               child: new CupertinoTextField(
-
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: new BorderRadius.circular(9.0),
+                  border: Border.all(
+                    color: Colors.grey,
+                    width: 1.0,
+                  )
+                ),
               ),
             ),
             new SizedBox(
@@ -51,6 +60,14 @@ class LoginScreen extends StatelessWidget {
               const EdgeInsets.symmetric(horizontal: 80.0, vertical: 0.0),
               child: new CupertinoTextField(
                 obscureText: true,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: new BorderRadius.circular(9.0),
+                  border: Border.all(
+                    color: Colors.grey,
+                    width: 1.0,
+                  )
+                ),
               ),
             ),
             new Row(

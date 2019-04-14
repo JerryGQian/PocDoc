@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:pocketmd/data/medication.dart';
 import 'package:pocketmd/data/prescription.dart';
 import 'package:pocketmd/screens/details.dart';
@@ -49,11 +50,29 @@ class PrescriptionHeadline extends StatelessWidget {
             height: 80.0,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
-              child: Image.asset(
-                medication.imageAssetPath,
-                semanticLabel: 'An icon showing ${medication.name}',
-                fit: BoxFit.fitWidth,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: medication.accentColor,
+                  image: DecorationImage(
+                    image: ExactAssetImage('images/flowers.jpeg'),
+                    fit: BoxFit.cover,
+                  ),
+                  border: Border.all(
+                    color: medication.accentColor,
+                    width: 8.0,
+                  ),
+                ),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(medication.name[0],
+                    style: TextStyle(
+                      fontFamily: 'Harabara',
+                      color: medication.accentColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 60.0),
+                  )
               ),
+              )
             ),
           ),
           SizedBox(width: 8.0),

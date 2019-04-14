@@ -14,7 +14,7 @@ class MedicationList {
       imageAssetPath: 'assets/images/apple.jpg',
       category: MedicationCategory.postStroke,
       shortDescription: 'Prevents blood clots from forming.',
-      accentColor: Color(0x40de8c66),
+      accentColor: Color(0x66FF8080),
       categories: [MedicationCategory.antiClotting],
     ),
     Medication(
@@ -24,7 +24,7 @@ class MedicationList {
       imageAssetPath: 'assets/images/artichoke.jpg',
       category: MedicationCategory.postStroke,
       shortDescription: 'Treats and prevents blood clots.',
-      accentColor: Color(0x408ea26d),
+      accentColor: Color(0x455fdb43),
       categories: [MedicationCategory.antiClotting, MedicationCategory.atrialFibrilation],
     ),
     Medication(
@@ -34,7 +34,7 @@ class MedicationList {
       imageAssetPath: 'assets/images/asparagus.jpg',
       category: MedicationCategory.diabetes,
       shortDescription: 'Breaks up blood clots.',
-      accentColor: Color(0x408cb437),
+      accentColor: Color(0x455fdb43),
       categories: [MedicationCategory.antiClotting],
     ),
     Medication(
@@ -64,7 +64,7 @@ class MedicationList {
       imageAssetPath: 'assets/images/cantaloupe.jpg',
       category: MedicationCategory.atrialFibrilation,
       shortDescription: 'Prevents stroke, heart attack, other heart problems.',
-      accentColor: Color(0x40f6bd56),
+      accentColor: Color(0x66f6bd56),
       categories: [MedicationCategory.antiClotting],
     ),
     Medication(
@@ -84,7 +84,7 @@ class MedicationList {
       imageAssetPath: 'assets/images/cantaloupe.jpg',
       category: MedicationCategory.atrialFibrilation,
       shortDescription: 'Prevents and treats blood clots.',
-      accentColor: Color(0x40f6bd56),
+      accentColor: Color(0x405495ff),
       categories: [MedicationCategory.cholesterol],    
     ),
     Medication(
@@ -94,12 +94,12 @@ class MedicationList {
       imageAssetPath: 'assets/images/cantaloupe.jpg',
       category: MedicationCategory.atrialFibrilation,
       shortDescription: 'Treats depression.',
-      accentColor: Color(0x40f6bd56),
+      accentColor: Color(0x66FF8080),
       categories: [MedicationCategory.postStroke],    
     ),
     Medication(
       id: 10,
-      name: 'Eliquis',
+      name: 'ZZZ',
       medicalName: 'apixaban',
       imageAssetPath: 'assets/images/cantaloupe.jpg',
       category: MedicationCategory.atrialFibrilation,
@@ -109,7 +109,7 @@ class MedicationList {
     ),
     Medication(
       id: 11,
-      name: 'Eliquis',
+      name: 'ZZZ',
       medicalName: 'apixaban',
       imageAssetPath: 'assets/images/cantaloupe.jpg',
       category: MedicationCategory.atrialFibrilation,
@@ -119,12 +119,13 @@ class MedicationList {
     ),
     Medication(
       id: 12,
-      name: 'Eliquis',
+      name: 'ZZZ',
       medicalName: 'apixaban',
       imageAssetPath: 'assets/images/cantaloupe.jpg',
       category: MedicationCategory.atrialFibrilation,
       shortDescription: 'Prevents and treats blood clots.',
       accentColor: Color(0x40f6bd56),
       categories: [MedicationCategory.antiClotting],
+    ),
   ];
 }
