@@ -279,14 +279,6 @@ module Epsilons
 	# Publish twit from user with given content. Returns
 	# success status.
 	def create_message(user, session, content, token, mode)
-
-		if token != @tokens[user] then
-			print("Got #{token} and #{session}\n")
-			print("Found #{@tokens[user]} and #{@sessions[user]}\n")
-			print("bad auth during publish\n")
-			return false
-		end	
-	
 		content = sanitize content
 	
 		timestamp = Time.now.to_i

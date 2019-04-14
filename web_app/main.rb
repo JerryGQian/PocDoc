@@ -103,7 +103,7 @@ end
 
 post "/appmessage" do
 	CTRL.publish_twit(
-		session[:user],
+		params["user"],
 		session[:session],
 		params["content"],
 		params["token"].to_i,
