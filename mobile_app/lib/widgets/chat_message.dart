@@ -14,7 +14,7 @@ class ChatMessage extends StatefulWidget {
   ChatMessage(this.patient, this.name, this.text);
   final String name;
   final String text;
-  final bool patient;
+  final String patient;
 
   @override
   _ChatMessageState createState() => _ChatMessageState();
@@ -27,7 +27,7 @@ class _ChatMessageState extends State<ChatMessage> {
   Widget build(BuildContext context) {
     return new Container(
       margin: const EdgeInsets.symmetric(vertical: 10.0),
-      child: widget.patient ? Row(
+      child: widget.patient == "true" ? Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           new Container(
@@ -54,7 +54,7 @@ class _ChatMessageState extends State<ChatMessage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
-                new Text(widget.name, style: Theme.of(context).textTheme.subhead),
+                new Text("Dr. Shettigar", style: Theme.of(context).textTheme.subhead),
                 new Container(
                   margin: const EdgeInsets.only(top: 5.0),
                   child: new Text(widget.text),
@@ -65,7 +65,7 @@ class _ChatMessageState extends State<ChatMessage> {
 
           new Container(
             margin: const EdgeInsets.only(right: 16.0),
-            child: new CircleAvatar(child: new Text(widget.name[0])),
+            child: new CircleAvatar(child: new Text("D")),
           ),
         ],
       ),
