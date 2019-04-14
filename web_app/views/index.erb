@@ -37,6 +37,7 @@
               <% if current && current == user[:pat]%>
               <div class="chat_list active_chat">
                 <% else %>
+               <a style="display:block" href="/?p=<%= user[:pat]%>">
                 <div class="chat_list">
                   <% end %>
 
@@ -51,6 +52,7 @@
                       </div>
                     </div>
                   </div>
+                  </a>
                   <% end %>
                 </section>
             <!--End pane-->

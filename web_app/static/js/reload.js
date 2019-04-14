@@ -2,10 +2,10 @@ $(document).ready(function () {
   // Listen to submit event on the <form> itself!
   console.log("Ready!");
   
-  var element = document.getElementById(".msg_history");
-  element.scrollTop = element.scrollHeight;
+  var element = document.getElementsByClassName("mesgs");
+  element[0].scrollTop = element[0].scrollHeight;
 
-  var element = document.getElementById(".mesgs");
+  var element = document.getElementById("history");
   element.scrollTop = element.scrollHeight;
 
   var element = document.getElementById("#scroll");
